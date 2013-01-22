@@ -1,0 +1,13 @@
+db.sites.insert( { name: 'VieuxPlongeur', url: 'http://plongee.vieuxplongeur.com/fr/' } )
+
+db.sites.insert( { name: 'Scubastore', url: 'http://www.scubastore.com/' } )
+
+db.sites.update({ name: 'Scubaland' }, { $set: {category: [ {name_cat: 'Ordinateurs de plongée', name_gen: 'Ordinateurs', url: 'http://www.scubaland.fr/ordinateur-de-plongee.html' }] }})
+
+db.sites.update({ name: 'Bubble-Diving' }, { $set: {category: [ {name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.bubble-diving.com/' }] }})
+
+db.sites.update({ name: 'Palanquee' }, { $set: {category: [ {name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/ordinateurs' }] }})
+
+db.sites.update({ name: 'VieuxPlongeur' }, { $set: {category: [ {name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://plongee.vieuxplongeur.com/fr/73-ordinateurs' }] }})
+
+db.sites.update({ name: 'Scubastore' }, { $set: {category: [ {name_cat: 'Instruments-ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=7&id_subfamilia=&tipo=&page=3&paraula=&idioma=fra' }] }})
