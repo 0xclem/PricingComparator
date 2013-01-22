@@ -40,23 +40,23 @@ Fin.
 
 
 //Exemple d'articles à matcher
-$libelle = "Montre ordinateurs D6i Métal SUUNTO";
-$libelle2 = "Ordinateur D6i bracelet metal + interface incluse";
-$libelle3 = "Suunto D6i Elastomer White + Free Transmitter";
-$libelle4 = "Montre D6i Suunto bracelet acier avec Interface USB - Suunto";
-$libelle5 = "MONTRE D6I ALL BLACK - SUUNTO Aqualung";
-
-$prix = 779.0;
-$prix2 = 790.0;
-$prix3 = 799.02;
-$prix4 = 899.0;
-$prix5 = 719.0;
-
-$categorie = "ordi";
-$categorie2 = "ordi";
-$categorie3 = "ordi";
-$categorie4 = "ordi";
-$categorie5 = "ordi";
+//$libelle = "Montre ordinateurs D6i Métal SUUNTO";
+//$libelle2 = "Ordinateur D6i bracelet metal + interface incluse";
+//$libelle3 = "Suunto D6i Elastomer White + Free Transmitter";
+//$libelle4 = "Montre D6i Suunto bracelet acier avec Interface USB - Suunto";
+//$libelle5 = "MONTRE D6I ALL BLACK - SUUNTO Aqualung";
+//
+//$prix = 779.0;
+//$prix2 = 790.0;
+//$prix3 = 799.02;
+//$prix4 = 899.0;
+//$prix5 = 719.0;
+//
+//$categorie = "ordi";
+//$categorie2 = "ordi";
+//$categorie3 = "ordi";
+//$categorie4 = "ordi";
+//$categorie5 = "ordi";
 
 
 //Fonction principale pour matcher deux articles
@@ -71,14 +71,14 @@ function match($lib1, $lib2, $prix1, $prix2)
     //Algo 1 => correspodance parfaite entre les mots
     if(count(array_intersect($mots1, $mots2)) >=2 && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25))
     {
-        echo "algo 1";
+        //echo "algo 1";
         $bool = true;
     }
 
     //Algo 2 => pourcentage de correspondance
     elseif (arrayCompare($mots1, $mots2) >= 2 && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25)) 
     {
-        echo "algo 2";
+        //echo "algo 2";
         $bool = true;
     }
     
@@ -138,25 +138,25 @@ function minusculesSansAccents($texte)
 }
 
 
-//Fonction de test
-if(match($libelle3, $libelle4, $prix3, $prix4))
+$m = new Mongo(); // Connexion à Mongo établie.
+$db = $m->selectDB("comparator"); // Choix de la base de données.
+
+$articles = $db->articles->find(array('_site' => new MongoId("50d762f667577bbedeba2b6c"))); // On trouve le libellé du site grâce à son id
+$articlesComp = $db->articles->find();
+
+foreach ($articles as $art)
 {
-    echo "vrai";
+	foreach ($articlesComp as $artComp)
+	{
+		if (strcmp($artComp['_site'], "50d762f667577bbedeba2b6c") != 0) {
+			
+			if(match($art['name'], $artComp['name'], $art['prices']['price'], $artComp['prices']['price'])) {
+				$match = $db->articles->findOne(array('_id' => new MongoId($art['_id'])));
+				if (!array_search($artComp['_id'], $match['match'])) {
+					$db->articles->update(array("_id" => new MongoId($art['_id'])), array('$push' => array('match'=> new MongoId($artComp['_id']))));
+				}
+			}
+		}
+	}
 }
-else echo "faux";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
