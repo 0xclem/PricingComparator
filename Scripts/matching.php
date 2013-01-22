@@ -69,19 +69,38 @@ function match($lib1, $lib2, $prix1, $prix2)
     $mots2 = explode(" ", minusculesSansAccents($lib2));
 
     //Algo 1 => correspodance parfaite entre les mots
-    if(count(array_intersect($mots1, $mots2)) >=2 && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25))
+   /* if(count(array_intersect($mots1, $mots2)) >=2 && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25))
     {
         //echo "algo 1";
         $bool = true;
-    }
+    }*/
 
     //Algo 2 => pourcentage de correspondance
-    elseif (arrayCompare($mots1, $mots2) >= 2 && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25)) 
+
+    $nbMatch = 0;
+    $compteur = 4;
+
+    while($nbMatch==0 && $compteur > 1)
+    {   
+        if (arrayCompare($mots1, $mots2) >= $compteur && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25)) 
+        {
+            $nbMatch++;
+        }
+        else
+        {
+            $compteur--;
+        }        
+    }
+
+    if ($nbMatch == 0) 
     {
-        //echo "algo 2";
+        $bool = false;
+    }
+    else
+    {
         $bool = true;
     }
-    
+
     return $bool;
 }
 
@@ -150,13 +169,17 @@ foreach ($articles as $art)
 	{
 		if (strcmp($artComp['_site'], "50d762f667577bbedeba2b6c") != 0) {
 			
-			if(match($art['name'], $artComp['name'], $art['prices']['price'], $artComp['prices']['price'])) {
+			if(match($art['name'], $artComp['name'], $art['prices']['price'], $artComp['prices']['price'])) 
+            {
 				$match = $db->articles->findOne(array('_id' => new MongoId($art['_id'])));
-				if (!array_search($artComp['_id'], $match['match'])) {
-					$db->articles->update(array("_id" => new MongoId($art['_id'])), array('$push' => array('match'=> new MongoId($artComp['_id']))));
+				if (!array_search($artComp['_id'], $match['match'])) 
+                {
+					//$db->articles->update(array("_id" => new MongoId($art['_id'])), array('$push' => array('match'=> new MongoId($artComp['_id']))));
+                    echo $art['name']." ===> Site: ".$artComp['_site']." ==> ".$artComp['name'];
+                    echo "\n";
 				}
 			}
 		}
-	}
+    }
 }
 ?>
