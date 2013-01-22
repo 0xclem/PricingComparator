@@ -69,14 +69,14 @@ function match($lib1, $lib2, $prix1, $prix2)
     $mots2 = explode(" ", minusculesSansAccents($lib2));
 
     //Algo 1 => correspodance parfaite entre les mots
-    if(count(array_intersect($mots1, $mots2)) >=2 && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25))
+  /*  if(count(array_intersect($mots1, $mots2)) >=2 && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25))
     {
         echo "algo 1";
         $bool = true;
-    }
+    }*/
 
     //Algo 2 => pourcentage de correspondance
-    elseif (arrayCompare($mots1, $mots2) >= 2 && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25)) 
+    if (arrayCompare($mots1, $mots2) >= 3 && ($prix1 >= $prix2 - $prix2*0.20 && $prix1 <= $prix2 + $prix2*0.20)) 
     {
         echo "algo 2";
         $bool = true;
