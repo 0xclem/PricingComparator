@@ -8,8 +8,8 @@ include('simplehtmldom_1_5/simple_html_dom.php');
 	   		  $db -> Base de données utilisée.
 	*/
 	{
-		$array_article = array("url" => $urlArticle, "_site" => new MongoId($idSite), "category" => $cat, "name" => strip_tags($name), array("price" => (float) $prixArticle, "time" => new MongoDate()));
-		echo $db->articles->insert($array_article);
+		$array_article = array("url" => $urlArticle, "_site" => new MongoId($idSite), "category" => $cat, "name" => strip_tags($name), "match" => array(null), "prices" => array("price" => (float) $prixArticle, "time" => new MongoDate()));
+		$db->articles->insert($array_article);
 	}
 
 if ($argc != 4) {
@@ -40,6 +40,7 @@ if(strcmp($site['name'], 'Scubastore') == 0) // Parsing du prix de l'article pou
 	$nbPages = count($categ->find('a')) - 1;
 	
 	for($i=1; $i <= $nbPages; $i++) {
+		$url = "http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=7&id_subfamilia=&tipo=&page=".$i."&paraula=&idioma=fra&id_campana=";
 		$html = file_get_html($url);
 		$categ = $html->find('.prodSub', 0);
 		
@@ -71,7 +72,7 @@ elseif (strcmp($site['name'], 'Palanquee') == 0) // Parsing du prix de l'article
 	
 			foreach ($html2->find('.h3.bp_product_name') as $a1) 
 			{
-				foreach ($a1->find('a') as $b1) 
+				foreach ($a1->find('a') as $b1)
 				{
 					$urlArticle = 'http://www.palanquee.com'.$b1->href;
 					$html3 = file_get_html($urlArticle);
