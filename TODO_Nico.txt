@@ -1,0 +1,12 @@
+- Choix du site référent à la connexion
+	- mettre en valeur ce site par rapport aux autre (genre la couleur du fond 		différente)
+
+- Sélection du bon article parmi tous ceux matchés (avec les img par exemple)
+
+- Possibilité de virer des articles dont on ne veut pas comparer les prix
+
+- Ajout des articles manuellement avec les urls
+
+- Possibilité de refresh les différentes collections (on verra ça tous ensemble)
+
+- BIZ ;)
