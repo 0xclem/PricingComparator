@@ -1,13 +1,115 @@
-db.sites.insert( { name: 'VieuxPlongeur', url: 'http://plongee.vieuxplongeur.com/fr/' } )
+db.sites.insert( { name: 'Palanquee', url: 'http://www.palanquee.com/',  category: [ 
+{name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/ordinateurs' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/palmes-masque-tuba-plongee' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/palmes-masques-tubas-chasse' },
+{name_cat: 'Montres', name_gen: 'Montres', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/montres' },
+{name_cat: 'Montres', name_gen: 'Montres', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/instruments-montres-ordinateurs-chasse' },
+{name_cat: 'Sac Bagagerie', name_gen: 'Bagagerie', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/sac-bagagerie' },
+{name_cat: 'Sac Bagagerie', name_gen: 'Bagagerie', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/sac-chasse' },
+{name_cat: 'Bouteilles', name_gen: 'Bouteilles', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/bouteilles' },
+{name_cat: 'Combinaisons', name_gen: 'Combinaisons', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/combinaison' },
+{name_cat: 'Combinaisons', name_gen: 'Combinaisons', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/combinaisons-chasse' },
+{name_cat: 'Eclairages', name_gen: 'Eclairages', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/eclairage' },
+{name_cat: 'Eclairages', name_gen: 'Eclairages', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/eclairage-chasse' },
+{name_cat: 'Fusil Arbalète', name_gen: 'Fusils', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/fusil-arbalete' },
+{name_cat: 'Lestage', name_gen: 'Lestage', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/lestage' },
+{name_cat: 'Chaussons', name_gen: 'Chaussons', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/chaussons-neoprene' },
+{name_cat: 'Chaussons', name_gen: 'Chaussons', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/chaussons-chasse' },
+{name_cat: 'Gants', name_gen: 'Gants', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/gant' },
+{name_cat: 'Gants', name_gen: 'Gants', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/gants-chasse' },
+{name_cat: 'Bouée', name_gen: 'Bouées', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/bouee-chasse' },
+{name_cat: 'Gilets Stabilisateurs', name_gen: 'Gilets', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/stab-gilet-stabilisateur' } 
+] } )
 
-db.sites.insert( { name: 'Scubastore', url: 'http://www.scubastore.com/' } )
+db.sites.insert( { name: 'VieuxPlongeur', url: 'http://www.vieuxplongeur.com/fr/',  category: [ 
+{name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://plongee.vieuxplongeur.com/fr/73-ordinateurs' },
+{name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://chasse.vieuxplongeur.com/fr/355-ordinateurs' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://plongee.vieuxplongeur.com/fr/65-masques' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://plongee.vieuxplongeur.com/fr/92-tubas' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://plongee.vieuxplongeur.com/fr/78-palmes' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://chasse.vieuxplongeur.com/fr/75-palmes' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://chasse.vieuxplongeur.com/fr/93-tubas' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://chasse.vieuxplongeur.com/fr/61-masques' },
+{name_cat: 'Montres', name_gen: 'Montres', url: 'http://plongee.vieuxplongeur.com/fr/67-montres' },
+{name_cat: 'Sacs', name_gen: 'Bagagerie', url: 'http://plongee.vieuxplongeur.com/fr/28-sacs' },
+{name_cat: 'Sacs', name_gen: 'Bagagerie', url: 'http://chasse.vieuxplongeur.com/fr/86-sacs' },
+{name_cat: 'Bouteilles', name_gen: 'Bouteilles', url: 'http://plongee.vieuxplongeur.com/fr/32-bouteilles' },
+{name_cat: 'Vêtements de plongée', name_gen: 'Combinaisons', url: 'http://plongee.vieuxplongeur.com/fr/891-vetements-de-plongee' },
+{name_cat: 'Vêtements de plongée', name_gen: 'Combinaisons', url: 'http://chasse.vieuxplongeur.com/fr/96-vetements' },
+{name_cat: 'Eclairage', name_gen: 'Eclairage', url: 'http://plongee.vieuxplongeur.com/fr/43-eclairages' },
+{name_cat: 'Arabalètes et Fusils', name_gen: 'Fusils', url: 'http://chasse.vieuxplongeur.com/fr/26-arbaletes-et-fusils' },
+{name_cat: 'Lestage', name_gen: 'Lestage', url: 'http://chasse.vieuxplongeur.com/fr/517-lestage' },
+{name_cat: 'Chaussons', name_gen: 'Chaussons', url: 'http://chasse.vieuxplongeur.com/fr/36-chaussons' },
+{name_cat: 'Gants', name_gen: 'Gants', url: 'http://chasse.vieuxplongeur.com/fr/47-gants' },
+{name_cat: 'Bouée', name_gen: 'Bouées', url: 'http://chasse.vieuxplongeur.com/fr/33-bouees' },
+{name_cat: 'Gilets Stabilisateurs', name_gen: 'Gilets', url: 'http://plongee.vieuxplongeur.com/fr/51-gilets-et-stabs' } 
+] } )
 
-db.sites.update({ name: 'Scubaland' }, { $set: {category: [ {name_cat: 'Ordinateurs de plongée', name_gen: 'Ordinateurs', url: 'http://www.scubaland.fr/ordinateur-de-plongee.html' }] }})
+db.sites.insert( { name: 'Bubble-Diving', url: 'http://www.bubble-diving.com/',  category: [ 
+{name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Montres', Montres: 'Ordinateurs', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Sacs', name_gen: 'Bagagerie', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Bouteilles', name_gen: 'Bouteilles', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Combinaisons', name_gen: 'Combinaisons', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Eclairage', name_gen: 'Eclairage', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Arbalètes', name_gen: 'Fusils', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Lestage', name_gen: 'Lestage', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Chaussons', name_gen: 'Chaussons', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Gants', name_gen: 'Gants', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Gilets', name_gen: 'Gilets', url: 'http://www.bubble-diving.com/' },
+{name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.bubble-diving.com/' }
+] } )
 
-db.sites.update({ name: 'Bubble-Diving' }, { $set: {category: [ {name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.bubble-diving.com/' }] }})
+db.sites.insert( { name: 'Scubastore', url: 'http://www.scubastore.com/', category: [ 
+{name_cat: 'Instruments-ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=7&id_subfamilia=&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=9&id_subfamilia=&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=3&id_subfamilia=&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=14&id_subfamilia=&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Montres', name_gen: 'Montres', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=16&id_subfamilia=&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Sacs', name_gen: 'Bagagerie', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=10&id_subfamilia=&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Bouteilles', name_gen: 'Bouteilles', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=1&id_subfamilia=16&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Combinaisons', name_gen: 'Combinaisons', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=12&id_subfamilia=&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Eclairage', name_gen: 'Eclairage', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=15&id_subfamilia=&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Fusils', name_gen: 'Fusils', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=6&id_subfamilia=&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Ceintures Poids', name_gen: 'Lestage', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=1&id_subfamilia=2&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Ceintures Poids', name_gen: 'Lestage', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=1&id_subfamilia=13&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Bottes Chaussettes', name_gen: 'Chaussons', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=1&id_subfamilia=11&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Gants', name_gen: 'Gants', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=1&id_subfamilia=5&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Bouées', name_gen: 'Bouées', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=1&id_subfamilia=3&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'Bouées', name_gen: 'Bouées', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=1&id_subfamilia=8&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'BCD', name_gen: 'Gilets', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=1006&id_subfamilia=&tipo=&page=1&paraula=&idioma=fra' },
+{name_cat: 'BCD', name_gen: 'Gilets', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=8&id_subfamilia=&tipo=&page=1&paraula=&idioma=fra' }
+] } )
 
-db.sites.update({ name: 'Palanquee' }, { $set: {category: [ {name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.palanquee.com/magasin-plongee-news/accueil/ordinateurs' }] }})
-
-db.sites.update({ name: 'VieuxPlongeur' }, { $set: {category: [ {name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://plongee.vieuxplongeur.com/fr/73-ordinateurs' }] }})
-
-db.sites.update({ name: 'Scubastore' }, { $set: {category: [ {name_cat: 'Instruments-ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.scubastore.com/?action=listado_productos_subfamilia&nombre_marca=&id_familia=7&id_subfamilia=&tipo=&page=3&paraula=&idioma=fra' }] }})
+db.sites.insert( { name: 'Scubaland', url: 'http://www.scubaland.fr/', category: [ 
+{name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.scubaland.fr/ordinateur-de-plongee.html' },
+{name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.scubaland.fr/ordinateur-de-chasse-sous-marine.html' },
+{name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.scubaland.fr/ordinateur-de-chasse-sous-marine.html' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.scubaland.fr/masque-de-plongee.html' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.scubaland.fr/palmes-de-plongee.html' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.scubaland.fr/tuba-de-plongee.html' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.scubaland.fr/masque-chasse-sous-marine.html' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.scubaland.fr/palmes-chasse-sous-marine.html' },
+{name_cat: 'Palmes Masques Tubas', name_gen: 'Palmes Masques Tubas', url: 'http://www.scubaland.fr/tuba-de-chasse-sous-marine.html' },
+{name_cat: 'Montres', name_gen: 'Montres', url: 'http://www.scubaland.fr/montre-etanche-plongee.html' },
+{name_cat: 'Montres', name_gen: 'Montres', url: 'http://www.scubaland.fr/montre-etanche-plongee.html' },
+{name_cat: 'Sacs', name_gen: 'Bagagerie', url: 'http://www.scubaland.fr/sac-de-plongee.html' },
+{name_cat: 'Sacs', name_gen: 'Bagagerie', url: 'http://www.scubaland.fr/sac-etanche.html' },
+{name_cat: 'Sacs', name_gen: 'Bagagerie', url: 'http://www.scubaland.fr/sac-de-chasse-sous-marine.html' },
+{name_cat: 'Sacs', name_gen: 'Bagagerie', url: 'http://www.scubaland.fr/sac-etanche.html' },
+{name_cat: 'Bouteilles', name_gen: 'Bouteilles', url: 'http://www.scubaland.fr/bouteille-de-plongee.html' },
+{name_cat: 'Combinaisons', name_gen: 'Combinaisons', url: 'http://www.scubaland.fr/combinaison-de-plongee.html' },
+{name_cat: 'Combinaisons', name_gen: 'Combinaisons', url: 'http://www.scubaland.fr/combinaison-chasse-sous-marine.html' },
+{name_cat: 'Phares', name_gen: 'Eclairage', url: 'http://www.scubaland.fr/phare-plongee.html' },
+{name_cat: 'Arbalètes', name_gen: 'Fusils', url: 'http://www.scubaland.fr/arbalete-chasse-sous-marine.html' },
+{name_cat: 'Lestage', name_gen: 'Lestage', url: 'http://www.scubaland.fr/lestage-plongee.html' },
+{name_cat: 'Lestage', name_gen: 'Lestage', url: 'http://www.scubaland.fr/lestage-chasse-sous-marine.html' },
+{name_cat: 'Chaussons', name_gen: 'Chaussons', url: 'http://www.scubaland.fr/chaussons-de-plongee.html' },
+{name_cat: 'Chaussons', name_gen: 'Chaussons', url: 'http://www.scubaland.fr/chaussons-chasse-sous-marine.html' },
+{name_cat: 'Gants', name_gen: 'Gants', url: 'http://www.scubaland.fr/gants-de-plongee.html' },
+{name_cat: 'Gants', name_gen: 'Gants', url: 'http://www.scubaland.fr/gants-chasse-sous-marine.html' },
+{name_cat: 'Signalisation', name_gen: 'Bouées', url: 'http://www.scubaland.fr/signalisation-du-chasseur-sous-marin.html' },
+{name_cat: 'Signalisation', name_gen: 'Bouées', url: 'http://www.scubaland.fr/signalisation-plongeur.html' },
+{name_cat: 'Gilets', name_gen: 'Gilets', url: 'http://www.scubaland.fr/gilet-stabilisateur.html' }
+] } )
