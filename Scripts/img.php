@@ -6,11 +6,18 @@ include('simplehtmldom_1_5/simple_html_dom.php');
 
 
 // Palanquee
-/*
-$url = "http://www.palanquee.com/magasin-plongee-news/accueil/cagoule/cagoule-focea-comfort-3-beuchat";
+
+$url = "http://www.palanquee.com/magasin-plongee-news/accueil/masques-plongee/masque-x-vu-mares";
 $html = file_get_html($url);
 
-echo $html->find('.single_product_image_cont img', 0)->src;*/
+if(isset($html->find('img[alt=image produit]', 0)->src))
+{
+	$img = "http://www.palanquee.com".$html->find('img[alt=image produit]', 0)->src;
+}
+elseif(isset($html->find('img[class=browseProductImage]', 0)->src)) 
+{
+	$img = $html->find('img[class=browseProductImage]', 0)->src;
+}
 
 
 // Bubble-diving
@@ -47,10 +54,6 @@ $finalLink = "http://www.scubastore.com".$link;
 echo $finalLink;
 */
 
-// Poussin_Store
-/*
-echo "va te faire enculer"; 
-*/
 
 
 
