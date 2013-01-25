@@ -79,6 +79,7 @@ elseif (strcmp($site['name'], 'Palanquee') == 0) // Parsing du prix de l'article
 					$prixArticleStr = $html3->find('.productPrice', 0)->plaintext;
 					$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
 					$img = $html3->find('.single_product_image_cont img', 0)->src;
+					echo $urlArticle."\n";
 					createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
 				}
 			}
@@ -96,14 +97,18 @@ elseif (strcmp($site['name'], 'Palanquee') == 0) // Parsing du prix de l'article
 					{
 						$urlArticle = 'http://www.palanquee.com'.$b1->href;
 						$html3 = file_get_html($urlArticle);
+						echo $urlArticle."\n";
 	
-						if ($html3 && !$db->articles->findOne(array('url' => $urlArticle))) {
-							$name = $html3->find('.p_page_head_bar', 0)->plaintext;
-							$prixArticleStr = $html3->find('.productPrice', 0)->plaintext;
-							$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
-							//$img = $html3->find('.single_product_image_cont img', 0)->src;
-							$img = '';
-							createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
+						if ($html3) {
+							$exist = $db->articles->findOne(array('url' => $urlArticle));
+							if (!isset($exist)) {
+								$name = $html3->find('.p_page_head_bar', 0)->plaintext;
+								$prixArticleStr = $html3->find('.productPrice', 0)->plaintext;
+								$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
+								//$img = $html3->find('.single_product_image_cont img', 0)->src;
+								$img = '';
+								createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
+							}
 						}
 					}
 				}
@@ -145,40 +150,73 @@ elseif (strcmp($site['name'], 'Bubble-Diving') == 0)// Parsing du prix de l'arti
 {
 	$html = file_get_html($url);
 	if (strcmp($cat, 'Ordinateurs') == 0) {
-		$categ = $html->find('li.nav-1', 0);
+		$categ = array($html->find('li.nav-1', 0));
 	}
-	foreach ($categ->find('a') as $sousCat) 
-	{
-		$azer = 0;
-		$url = $sousCat->href;
-		$html = file_get_html($url);
+	elseif (strcmp($cat, 'Palmes Masques Tubas') == 0) {
+		$categ = array($html->find('li.nav-20', 0), $html->find('li.nav-21', 0), $html->find('li.nav-22', 0));
+	}
+	elseif (strcmp($cat, 'Montres') == 0) {
+		$categ = array($html->find('li.nav-2', 0));
+	}
+	elseif (strcmp($cat, 'Bagagerie') == 0) {
+		$categ = array($html->find('li.nav-11', 0));
+	}
+	elseif (strcmp($cat, 'Bouteilles') == 0) {
+		$categ = array($html->find('li.nav-26', 0));
+	}
+	elseif (strcmp($cat, 'Combinaisons') == 0) {
+		$categ = array($html->find('li.nav-12', 0), $html->find('li.nav-13', 0), $html->find('li.nav-14', 0), $html->find('li.nav-15', 0));
+	}
+	elseif (strcmp($cat, 'Eclairage') == 0) {
+		$categ = array($html->find('li.nav-5', 0));
+	}
+	elseif (strcmp($cat, 'Fusils') == 0) {
+		$categ = array($html->find('li.nav-31', 0));
+	}
+	elseif (strcmp($cat, 'Lestage') == 0) {
+		$categ = array($html->find('li.nav-27', 0));
+	}
+	elseif (strcmp($cat, 'Chaussons') == 0) {
+		$categ = array($html->find('li.nav-18', 0));
+	}
+	elseif (strcmp($cat, 'Gants') == 0) {
+		$categ = array($html->find('li.nav-19', 0));
+	}
+	elseif (strcmp($cat, 'Gilets') == 0) {
+		$categ = array($html->find('li.nav-9', 0));
+	}
 
-		$categ = $html->find('.pages', 0);
-		if ($categ) {
-			$nbPages = count($categ->find('a'));
-		}
-		else {
-			$nbPages = 1;
-		}
-		
-		for($i=1; $i <= $nbPages; $i++) {
-			$url2 = $url.'?p='.$i;
-			$html2 = file_get_html($url2);
+	foreach ($categ as $sousCateg) { 
+		foreach ($sousCateg->find('a') as $sousCat) {
+			$url = $sousCat->href;
+			$html = file_get_html($url);
+	
+			$categ = $html->find('.pages', 0);
+			if ($categ) {
+				$nbPages = count($categ->find('a'));
+			}
+			else {
+				$nbPages = 1;
+			}
 			
-			foreach ($html2->find('.products-grid') as $a) {
-				foreach ($a->find('.item') as $b) {
-					$c = $b->find('a', 0);
-					$azer++;
-					
-					$urlArticle = $c->href;
-					$html3 = file_get_html($urlArticle);
-					
-					if ($html3 && !$db->articles->findOne(array('url' => $urlArticle))) {
-						$name = $html3->find('.product-name h1', 0)->plaintext;
-						$prixArticleStr = $html3->find('.regular-price', 0)->plaintext;
-						$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
-						$img = $html3->find('img#image', 0)->src;
-						createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
+			for($i=1; $i <= $nbPages; $i++) {
+				$url2 = $url.'?p='.$i;
+				$html2 = file_get_html($url2);
+				
+				foreach ($html2->find('.products-grid') as $a) {
+					foreach ($a->find('.item') as $b) {
+						$c = $b->find('a', 0);
+						
+						$urlArticle = $c->href;
+						$html3 = file_get_html($urlArticle);
+						
+						if ($html3 && !$db->articles->findOne(array('url' => $urlArticle))) {
+							$name = $html3->find('.product-name h1', 0)->plaintext;
+							$prixArticleStr = $html3->find('.regular-price', 0)->plaintext;
+							$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
+							$img = $html3->find('img#image', 0)->src;
+							createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
+						}
 					}
 				}
 			}

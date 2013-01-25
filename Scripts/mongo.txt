@@ -58,7 +58,6 @@ db.sites.insert( { name: 'Bubble-Diving', url: 'http://www.bubble-diving.com/', 
 {name_cat: 'Chaussons', name_gen: 'Chaussons', url: 'http://www.bubble-diving.com/' },
 {name_cat: 'Gants', name_gen: 'Gants', url: 'http://www.bubble-diving.com/' },
 {name_cat: 'Gilets', name_gen: 'Gilets', url: 'http://www.bubble-diving.com/' },
-{name_cat: 'Ordinateurs', name_gen: 'Ordinateurs', url: 'http://www.bubble-diving.com/' }
 ] } )
 
 db.sites.insert( { name: 'Scubastore', url: 'http://www.scubastore.com/', category: [ 
