@@ -1,5 +1,5 @@
-- Choix du site référent à la connexion
-	- mettre en valeur ce site par rapport aux autre (genre la couleur du fond 		différente)
+** Choix du site référent à la connexion
+	- mettre en valeur ce site par rapport aux autre (genre la couleur du fond 		différente)**
 
 - Sélection du bon article parmi tous ceux matchés (avec les img par exemple)
 	- quand le bon article est sélectionné, il faut le précise en BD (supprimer tous 	les autres choix)
