@@ -8,7 +8,7 @@ include('simplehtmldom_1_5/simple_html_dom.php');
 	   		  $db -> Base de données utilisée.
 	*/
 	{
-		$array_article = array("url" => $urlArticle, "_site" => new MongoId($idSite), "category" => $cat, "name" => strip_tags($name), "img" => $img, "match" => array(), "prices" => array("price" => (float) $prixArticle, "time" => new MongoDate()));
+		$array_article = array("url" => $urlArticle, "_site" => new MongoId($idSite), "category" => $cat, "name" => str_replace("\t", "", $name), "img" => $img, "match" => array(), "prices" => array("price" => (float) $prixArticle, "time" => new MongoDate()));
 		$db->articles->insert($array_article);
 	}
 
@@ -60,6 +60,8 @@ if(strcmp($site['name'], 'Scubastore') == 0) // Parsing du prix de l'article pou
 				createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
 			}
 		}
+		$html->clear();
+		unset($html);
 	}
 }
 elseif (strcmp($site['name'], 'Palanquee') == 0) // Parsing du prix de l'article pour le site Palanquee
@@ -78,12 +80,19 @@ elseif (strcmp($site['name'], 'Palanquee') == 0) // Parsing du prix de l'article
 					$name = $html3->find('.p_page_head_bar', 0)->plaintext;
 					$prixArticleStr = $html3->find('.productPrice', 0)->plaintext;
 					$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
-					$img = $html3->find('.single_product_image_cont img', 0)->src;
-					echo $urlArticle."\n";
+					$img = '';
+					if(isset($html3->find('img[alt=image produit]', 0)->src)) {
+						$img = "http://www.palanquee.com".$html3->find('img[alt=image produit]', 0)->src;
+					}
+					elseif(isset($html3->find('img[class=browseProductImage]', 0)->src)) {
+						$img = $html3->find('img[class=browseProductImage]', 0)->src;
+					}
 					createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
 				}
 			}
 		}
+		$html->clear();
+		unset($html);
 	}
 	else {
 		foreach ($categ as $a) {
@@ -91,27 +100,28 @@ elseif (strcmp($site['name'], 'Palanquee') == 0) // Parsing du prix de l'article
 				$urlSousCat = 'http://www.palanquee.com'.$b->href;
 				$html2 = file_get_html($urlSousCat);
 		
-				foreach ($html2->find('.h3.bp_product_name') as $a1) 
-				{
-					foreach ($a1->find('a') as $b1)
-					{
-						$urlArticle = 'http://www.palanquee.com'.$b1->href;
-						$html3 = file_get_html($urlArticle);
-						echo $urlArticle."\n";
-	
-						if ($html3) {
-							$exist = $db->articles->findOne(array('url' => $urlArticle));
-							if (!isset($exist)) {
-								$name = $html3->find('.p_page_head_bar', 0)->plaintext;
-								$prixArticleStr = $html3->find('.productPrice', 0)->plaintext;
-								$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
-								//$img = $html3->find('.single_product_image_cont img', 0)->src;
-								$img = '';
-								createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
-							}
+				foreach ($html2->find('.h3.bp_product_name') as $a1) {
+					$urlArticle = 'http://www.palanquee.com'.$a1->find('a', 0)->href;
+					$html3 = file_get_html($urlArticle);
+
+					if (isset($html3) && !$db->articles->findOne(array('url' => $urlArticle))) {
+						$name = $html3->find('.p_page_head_bar', 0)->plaintext;
+						$prixArticleStr = $html3->find('.productPrice', 0)->plaintext;
+						$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
+						$img = '';
+						if(isset($html2->find('img[alt=image produit]', 0)->src)) {
+							$img = "http://www.palanquee.com".$html2->find('img[alt=image produit]', 0)->src;
 						}
+						elseif(isset($html2->find('img[class=browseProductImage]', 0)->src)) {
+							$img = $html2->find('img[class=browseProductImage]', 0)->src;
+						}
+						createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
 					}
+					$html3->clear();
+					unset($html3);
 				}
+				$html2->clear();
+				unset($html2);
 			}
 		}
 	}
@@ -144,6 +154,8 @@ elseif (strcmp($site['name'], 'VieuxPlongeur') == 0)// Parsing du prix de l'arti
 				}
 			}
 		}
+		$html->clear();
+		unset($html);
 	}
 }
 elseif (strcmp($site['name'], 'Bubble-Diving') == 0)// Parsing du prix de l'article pour le site Bubble-Diving
@@ -153,7 +165,7 @@ elseif (strcmp($site['name'], 'Bubble-Diving') == 0)// Parsing du prix de l'arti
 		$categ = array($html->find('li.nav-1', 0));
 	}
 	elseif (strcmp($cat, 'Palmes Masques Tubas') == 0) {
-		$categ = array($html->find('li.nav-20', 0), $html->find('li.nav-21', 0), $html->find('li.nav-22', 0));
+		$categ = array($html->find('li.nav-21', 0), $html->find('li.nav-22', 0), $html->find('li.nav-23', 0));
 	}
 	elseif (strcmp($cat, 'Montres') == 0) {
 		$categ = array($html->find('li.nav-2', 0));
@@ -162,7 +174,7 @@ elseif (strcmp($site['name'], 'Bubble-Diving') == 0)// Parsing du prix de l'arti
 		$categ = array($html->find('li.nav-11', 0));
 	}
 	elseif (strcmp($cat, 'Bouteilles') == 0) {
-		$categ = array($html->find('li.nav-26', 0));
+		$categ = array($html->find('li.nav-27', 0));
 	}
 	elseif (strcmp($cat, 'Combinaisons') == 0) {
 		$categ = array($html->find('li.nav-12', 0), $html->find('li.nav-13', 0), $html->find('li.nav-14', 0), $html->find('li.nav-15', 0));
@@ -171,16 +183,16 @@ elseif (strcmp($site['name'], 'Bubble-Diving') == 0)// Parsing du prix de l'arti
 		$categ = array($html->find('li.nav-5', 0));
 	}
 	elseif (strcmp($cat, 'Fusils') == 0) {
-		$categ = array($html->find('li.nav-31', 0));
+		$categ = array($html->find('li.nav-32', 0));
 	}
 	elseif (strcmp($cat, 'Lestage') == 0) {
-		$categ = array($html->find('li.nav-27', 0));
+		$categ = array($html->find('li.nav-28', 0));
 	}
 	elseif (strcmp($cat, 'Chaussons') == 0) {
-		$categ = array($html->find('li.nav-18', 0));
+		$categ = array($html->find('li.nav-19', 0));
 	}
 	elseif (strcmp($cat, 'Gants') == 0) {
-		$categ = array($html->find('li.nav-19', 0));
+		$categ = array($html->find('li.nav-20', 0));
 	}
 	elseif (strcmp($cat, 'Gilets') == 0) {
 		$categ = array($html->find('li.nav-9', 0));
@@ -220,6 +232,8 @@ elseif (strcmp($site['name'], 'Bubble-Diving') == 0)// Parsing du prix de l'arti
 					}
 				}
 			}
+			$html->clear();
+			unset($html);
 		}
 	}
 }
@@ -235,8 +249,7 @@ elseif (strcmp($site['name'], 'Scubaland') == 0) // Parsing du prix de l'article
 		$url2 = substr($url, 0, -5).'_page'.$j.".html";
 		$html = file_get_html($url2);
 		$tabGeneral = $html->find('table#corpsdusite', 0);
-		foreach ($tabGeneral->find('a.petit_titreproduit') as $a) 
-		{
+		foreach ($tabGeneral->find('a.petit_titreproduit') as $a) {
 			$urlArticle = 'http://www.scubaland.fr/'.$a->href;
 			$html2 = file_get_html($urlArticle);
 			
@@ -275,8 +288,9 @@ elseif (strcmp($site['name'], 'Scubaland') == 0) // Parsing du prix de l'article
 				$img = "http://www.scubaland.fr/".$imgLink;
 				createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
 			}
+			$html2->clear();
+			unset($html2);
 		}
-	
 	}
 }
 
