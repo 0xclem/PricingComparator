@@ -7,7 +7,7 @@ include('simplehtmldom_1_5/simple_html_dom.php');
 
 // Palanquee
 
-$url = "http://www.palanquee.com/magasin-plongee-news/accueil/masques-plongee/masque-x-vu-mares";
+$url = "http://www.palanquee.com/magasin-plongee-news/index.php?page=shop.product_details&product_id=13076&category_id=42&option=com_virtuemart&Itemid=10";
 $html = file_get_html($url);
 
 if(isset($html->find('img[alt=image produit]', 0)->src))
@@ -19,7 +19,7 @@ elseif(isset($html->find('img[class=browseProductImage]', 0)->src))
 	$img = $html->find('img[class=browseProductImage]', 0)->src;
 }
 
-
+echo $img;
 // Bubble-diving
 /*
 $url = "http://www.bubble-diving.com/plonge/nouveautes-accueil/monopiece-atlantis-7-mm-d.html";
