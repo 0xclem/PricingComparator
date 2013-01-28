@@ -1,0 +1,71 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1249" measuredH="664" mockupW="1174" mockupH="643">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="75" y="21" w="1174" h="643" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>13421772</color>
+        <text>A%20Web%20Page%0Ahttp%3A//pricing-comparator.com</text>
+        <verticalScrollbar>true</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::ButtonBar" x="110" y="99" w="-1" h="-1" measuredW="286" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tableau%20des%20prix%2C%20Rechercher%20un%20article</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="309" y="171" w="687" h="112" measuredW="520" measuredH="111" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Article%28s%29%2C%20La%20Palanqu%E9e%2C%20Bubble-diving%2C%20Scubaland%2C%20Scubastore%2C%20VieuxPlongeur%0AUn%20tuba%2C2%u20AC%2C1.50%u20AC%2C%201.99%2C%202.50%u20AC%2C2%u20AC%0AUn%20masque%2C20%u20AC%2C15%u20AC%2C%2019.99%2C%2022.50%u20AC%2C20%u20AC%0AUne%20montre%2C%20199%u20AC%2C205%u20AC%2C201%u20AC%2C198%u20AC%2C500%u20AC</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Tooltip" x="460" y="126" w="154" h="44" measuredW="154" measuredH="0" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Ceci%20est%20mon%20site</text>
+        <tooltipDirection>SW</tooltipDirection>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="1011" y="190" w="-1" h="-1" measuredW="31" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>X</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="1011" y="223" w="-1" h="-1" measuredW="31" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>X</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="1011" y="250" w="-1" h="-1" measuredW="31" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>X</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Tooltip" x="918" y="277" w="112" h="96" measuredW="121" measuredH="0" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Supprimer%20un%20article%20du%20tableau%0A%28pas%20de%20la%20BD%29</text>
+        <tooltipDirection>NE</tooltipDirection>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Button" x="309" y="328" w="-1" h="-1" measuredW="125" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Ajouter%20un%20article</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::LineChart" x="396" y="417" w="539" h="158" measuredW="187" measuredH="175" zOrder="9" locked="false" isInGroup="-1"/>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Tooltip" x="210" y="474" w="157" h="138" measuredW="165" measuredH="0" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Lorsque%20un%20article%20est%20s%E9lectionn%E9%20avec%20la%20souris%2C%20son%20graphe%20d%27%E9volution%20des%20prix%20appara%EEt</text>
+        <tooltipDirection>NE</tooltipDirection>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="516" y="328" w="-1" h="-1" measuredW="149" measuredH="27" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Exporter%20pour%20Excel...</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Tooltip" x="155" y="277" w="154" h="63" measuredW="158" measuredH="0" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Renvoie%20vers%20la%20recherche%20d%27article%2C%20tout%20simplement</text>
+        <tooltipDirection>SE</tooltipDirection>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
