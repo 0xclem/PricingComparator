@@ -70,7 +70,7 @@ function arrayCompare($a1, $a2)
         foreach ($a2 as $m2) 
         {
            similar_text($m1, $m2, $percent);
-           if($percent >= 85)
+           if($percent >= 95)
            {
                 $nb++;
            }

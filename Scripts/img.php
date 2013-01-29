@@ -7,16 +7,16 @@ include('simplehtmldom_1_5/simple_html_dom.php');
 
 // Palanquee
 
-$url = "http://www.palanquee.com/magasin-plongee-news/index.php?page=shop.product_details&product_id=13076&category_id=42&option=com_virtuemart&Itemid=10";
+$url = "http://www.palanquee.com/magasin-plongee-news/accueil/bouteille-air/bouteille-bloc-15l-232-bars-1-sortie-scubapro-2013";
 $html = file_get_html($url);
 
-if(isset($html->find('img[alt=image produit]', 0)->src))
+if(isset($html->find('img#slideshowImage', 0)->src))
 {
-	$img = "http://www.palanquee.com".$html->find('img[alt=image produit]', 0)->src;
+	$img = "http://www.palanquee.com".$html->find('img#slideshowImage', 0)->src;
 }
-elseif(isset($html->find('img[class=browseProductImage]', 0)->src)) 
+elseif(isset($html->find('.single_product_image_cont img[class=browseProductImage]', 0)->src)) 
 {
-	$img = $html->find('img[class=browseProductImage]', 0)->src;
+	$img = $html->find('.single_product_image_cont img[class=browseProductImage]', 0)->src;
 }
 
 echo $img;
