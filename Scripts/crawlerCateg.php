@@ -87,8 +87,11 @@ elseif (strcmp($site['name'], 'Palanquee') == 0) // Parsing du prix de l'article
 					elseif(isset($html3->find('img[class=browseProductImage]', 0)->src)) {
 						$img = $html3->find('img[class=browseProductImage]', 0)->src;
 					}
+					//echo $urlArticle."\n".$img."\n\n";
 					createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
 				}
+				$html3->clear();
+				unset($html3);
 			}
 		}
 		$html->clear();
@@ -109,11 +112,11 @@ elseif (strcmp($site['name'], 'Palanquee') == 0) // Parsing du prix de l'article
 						$prixArticleStr = $html3->find('.productPrice', 0)->plaintext;
 						$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
 						$img = '';
-						if(isset($html2->find('img[alt=image produit]', 0)->src)) {
-							$img = "http://www.palanquee.com".$html2->find('img[alt=image produit]', 0)->src;
+						if(isset($html3->find('img[alt=image produit]', 0)->src)) {
+							$img = "http://www.palanquee.com".$html3->find('img[alt=image produit]', 0)->src;
 						}
-						elseif(isset($html2->find('img[class=browseProductImage]', 0)->src)) {
-							$img = $html2->find('img[class=browseProductImage]', 0)->src;
+						elseif(isset($html3->find('img[class=browseProductImage]', 0)->src)) {
+							$img = $html3->find('img[class=browseProductImage]', 0)->src;
 						}
 						createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
 					}
