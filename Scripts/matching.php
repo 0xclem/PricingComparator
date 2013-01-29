@@ -33,17 +33,38 @@ function match($lib1, $lib2, $prix1, $prix2)
     $nbMatch = 0;
     $compteur = 4;
 
-    while($nbMatch==0 && $compteur > 1)
-    {   
-        if (arrayCompare($mots1, $mots2) >= $compteur && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25)) 
-        {
-            $nbMatch++;
+
+
+    if(min(count($mots1), count($mots2)) > 5)
+    {
+        while($nbMatch==0 && $compteur > 2)
+        {   
+            if (arrayCompare($mots1, $mots2) >= $compteur && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25)) 
+            {
+                $nbMatch++;
+            }
+            else
+            {
+                $compteur--;
+            }        
         }
-        else
-        {
-            $compteur--;
-        }        
     }
+    else
+    {
+        while($nbMatch==0 && $compteur > 1)
+        {   
+            if (arrayCompare($mots1, $mots2) >= $compteur && ($prix1 >= $prix2 - $prix2*0.25 && $prix1 <= $prix2 + $prix2*0.25)) 
+            {
+                $nbMatch++;
+            }
+            else
+            {
+                $compteur--;
+            }        
+        }   
+    }
+
+
 
     if ($nbMatch == 0) 
     {
@@ -70,7 +91,7 @@ function arrayCompare($a1, $a2)
         foreach ($a2 as $m2) 
         {
            similar_text($m1, $m2, $percent);
-           if($percent >= 95)
+           if($percent >= 92)
            {
                 $nb++;
            }
@@ -145,5 +166,9 @@ else
 {
     echo "Argument du site référent manquant";
 }
+
+
+
+
 
 ?>
