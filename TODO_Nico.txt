@@ -12,4 +12,12 @@
 
 - Affichage par catégorie d'article
 
+- Sur le tableau de comparaison des prix 
+	- afficher un filtre par catégorie
+	- quand survol sur l'article avec le souris -> affichage photo
+
+- Si la sélection du matching est foireuse -> possibilité de rattraper le coup
+
+- Actualisation des prix par ligne
+
 - BIZ ;)
