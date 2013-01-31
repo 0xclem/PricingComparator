@@ -130,10 +130,6 @@ function minusculesSansAccents($texte)
     return $texte;        
 }
 
-
-
-
-// 50d762f667577bbedeba2b6c
 if(isset($argv[1]))
 {
     $m = new Mongo(); // Connexion à Mongo établie.
@@ -148,14 +144,12 @@ if(isset($argv[1]))
         {
             if (strcmp($artComp['_site'], $argv[1]) != 0) 
             {
-            
-                if(match($art['name'], $artComp['name'], $art['prices']['price'], $artComp['prices']['price'])) 
+                if(match($art['name'], $artComp['name'], $art['prices'][0]['price'], $artComp['prices'][0]['price'])) 
                 {
                     $match = $db->articles->findOne(array('_id' => new MongoId($art['_id'])));
                     if (!array_search($artComp['_id'], $match['match'])) 
                     {
-                        $db->articles->update(array("_id" => new MongoId($art['_id'])), array('$push' => array('match'=> new MongoId($artComp['_id']))));
-                        //echo $art['name']." ===> Site: ".$artComp['_site']." ==> ".$artComp['name'];                       
+                        $db->articles->update(array("_id" => new MongoId($art['_id'])), array('$push' => array('match'=> new MongoId($artComp['_id']))));                     
                     }
                 }
             }

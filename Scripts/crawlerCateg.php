@@ -8,7 +8,7 @@ include('simplehtmldom_1_5/simple_html_dom.php');
 	   		  $db -> Base de données utilisée.
 	*/
 	{
-		$array_article = array("url" => $urlArticle, "_site" => new MongoId($idSite), "category" => $cat, "name" => str_replace("\t", "", $name), "img" => $img, "match" => array(), "prices" => array("price" => (float) $prixArticle, "time" => new MongoDate()));
+		$array_article = array("url" => $urlArticle, "_site" => new MongoId($idSite), "category" => $cat, "name" => str_replace("\t", "", $name), "img" => $img, "match" => array(), "prices" => array(array("price" => (float) $prixArticle, "time" => new MongoDate())));
 		$db->articles->insert($array_article);
 	}
 
@@ -55,9 +55,13 @@ if(strcmp($site['name'], 'Scubastore') == 0) // Parsing du prix de l'article pou
 				$name = $html2->find('.title', 0)->plaintext;
 				$prixArticleStr = $html2->find('#total_dinamic', 0)->plaintext;
 				$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
+				$img = '';
 				$imgLink = $html2->find('.jqzoom', 0)->href;
 				$img = "http://www.scubastore.com".$imgLink;
 				createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
+				
+				$html2->clear();
+				unset($html2);
 			}
 		}
 		$html->clear();
@@ -152,8 +156,12 @@ elseif (strcmp($site['name'], 'VieuxPlongeur') == 0)// Parsing du prix de l'arti
 					$name = str_replace("\t", '', $html2->find('#pb-left-column h1', 0)->plaintext);
 					$prixArticleStr = $html2->find('.our_price_display', 0)->plaintext;
 					$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
+					$img = '';
 					$img = $html2->find('#view_full_size img', 0)->src;
 					createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
+					
+					$html2->clear();
+					unset($html2);
 				}
 			}
 		}
@@ -182,7 +190,7 @@ elseif (strcmp($site['name'], 'Bubble-Diving') == 0)// Parsing du prix de l'arti
 	elseif (strcmp($cat, 'Combinaisons') == 0) {
 		$categ = array($html->find('li.nav-12', 0), $html->find('li.nav-13', 0), $html->find('li.nav-14', 0), $html->find('li.nav-15', 0));
 	}
-	elseif (strcmp($cat, 'Eclairage') == 0) {
+	elseif (strcmp($cat, 'Eclairages') == 0) {
 		$categ = array($html->find('li.nav-5', 0));
 	}
 	elseif (strcmp($cat, 'Fusils') == 0) {
@@ -229,11 +237,17 @@ elseif (strcmp($site['name'], 'Bubble-Diving') == 0)// Parsing du prix de l'arti
 							$name = $html3->find('.product-name h1', 0)->plaintext;
 							$prixArticleStr = $html3->find('.regular-price', 0)->plaintext;
 							$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
+							$img = '';
 							$img = $html3->find('img#image', 0)->src;
 							createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
+							
+							$html3->clear();
+							unset($html3);
 						}
 					}
 				}
+				$html2->clear();
+				unset($html2);
 			}
 			$html->clear();
 			unset($html);
@@ -247,8 +261,7 @@ elseif (strcmp($site['name'], 'Scubaland') == 0) // Parsing du prix de l'article
 	$str = $html->find('.marquedsdivnormal', 0)->next_sibling()->plaintext;
 	$i = intval(substr($str, 7,3));
 	
-	for($j=1; $j<=$i; $j++)
-	{
+	for($j=1; $j<=$i; $j++) {
 		$url2 = substr($url, 0, -5).'_page'.$j.".html";
 		$html = file_get_html($url2);
 		$tabGeneral = $html->find('table#corpsdusite', 0);
@@ -287,13 +300,18 @@ elseif (strcmp($site['name'], 'Scubaland') == 0) // Parsing du prix de l'article
 				
 				$name = $html2->find('.nom_model', 0)->plaintext;
 				$prixArticle =  floatval(str_replace(',','.',$prixArticleStr));
-				$imgLink = $html2->find('img[name=image_affichee]', 0)->src;
-				$img = "http://www.scubaland.fr/".$imgLink;
+				$img = '';
+				if ($html2->find('img[name=image_affichee]', 0)) {
+					$imgLink = $html2->find('img[name=image_affichee]', 0)->src;
+					$img = "http://www.scubaland.fr/".$imgLink;
+				}
 				createArticle($name, $prixArticle, $cat, $idSite, $urlArticle, $img, $db);
 			}
 			$html2->clear();
 			unset($html2);
 		}
+		$html->clear();
+		unset($html);
 	}
 }
 
