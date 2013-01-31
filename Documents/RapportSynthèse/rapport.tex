@@ -8,6 +8,7 @@
 \usepackage{wrapfig}
 \usepackage{listingsutf8}
 \usepackage[final]{pdfpages} 
+\usepackage{float}
 
 \usepackage{amsmath}
 \usepackage{enumitem}     % images
@@ -132,22 +133,84 @@ Pour ce qui est de la conception générale du projet, il est bien évident qu'u
 
 Ce projet nous a très vite paru lourd en matière de charge de travail. En effet, avec deux mois pour une conception, un développement et un déploiement, le tout accompagné d'une rédaction de rapport de synthèse et technique, il fallait trouver une organisation optimale dans le temps. Après avoir établi le nombre de jours/homme nécessaire au bon déroulement de ce projet, nous avons décidé d'utiliser un diagramme de Gantt afin d'avoir un planning à suivre.
 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.4, angle=90]{diagramme.png}
+\caption{\textit{Diagramme de Gantt}}
+\end{center}
+\end{figure}
+
+\paragraph{}
+Comme on peut le voir sur la figure 3.1, les tâches suivantes ont été programmées dans le planning:
+\begin{itemize}
+\item Conception (10 jours)
+\item Développement (20 jours)
+\item Rédaction du rapport de synthèse et du rapport technique (13 jours)
+\item Déploiement de l'application (2 jours)
+\item Phase de tests (2 jours)
+\item Préparation de la soutenance (3 jours)
+\end{itemize}
 
 
 \paragraph{}
+Plusieurs tâches ont été placées en même temps, comme le développement et la rédaction des rapports. C'est tout simplement qu'un roulement a été plannifié. En effet, à partir du 14 janvier, deux auront pour tâche le développement pendant qu'un autre s'occupera du rapport. Ce roulement est journalier mais peut être allongé pour des raisons particulières (une partie à finir de rédiger pour la personne concernée par exemple). \\
+
+Nous avons jugé que deux personnes étaient utiles pour la rédaction du rapport de synthèse (Clément et Nicolas), et trois personnes pour le rapport technique. Etant donné que chacun aura une mission technique relativement différente durant le projet, il nous a donc semblé normal que chacun détaille sa partie au mieux dans le rapport technique.\\
+
+Pour finir, Yann sera chargé de la partie déploiement tandis que Clément et Nicolas s'occuperont des tests finaux. Un créneau de trois jours à également été réservé afin de pouvoir se préparer pour la soutenance du projet.
 
 \section{Nos outils}
-
 Les choix technologiques ont été établis très rapidement: 
+\begin{itemize}
+\item PHP pour la partie récupération de données sur les sites de plongée
+\item MongoDB pour la gestion de la base de données
+\item Node.js pour le front-end
+\end{itemize}
 
+\paragraph{}
+Pourquoi ces technologies et pas d'autres ? Le PHP est un langage web énormément utilisé et est réputé pour sa rapidité de traitement. Ayant une grosse communauté de développeurs, il possède tout un arsenal de librairies qui va nous servir à récolter très facilement les données sur les sites. \\MongoDB est un Système de Gestion de Base de Données (SGBD) scalable, à hautes performances et open source. Nous avions déjà eu l'occasion de l'utiliser lors du précédent projet industriel chez \textit{Deegr.com} et sa facilité d'utilisation nous avait charmés.\\Enfin, Node.js car il permet de faire du JavaScript côté serveur, et est réputé pour ses bonnes performances.\\
+Une description plus détaillée sur ces technologies est présente dans le rapport technique.
+
+\paragraph{}
+En ce qui concerne les outils de travail collaboratif, nous avons utilisé Github, qui est un logiciel de versions décentralisées. Il permet à un groupe de développeurs de travailler sur un même projet sans avoir à s'envoyer les sources à chaque fois qu'elles ont été mises à jour. En effet, un simple \textit{push} permet à une membre de l'équipe de mettre à jour ses changements sur le serveur Git, et \textit{pull} pour récupérer la dernière version du projet sur son poste.\\
+Cet outil est indispensable pour le bon déroulement d'un projet en équipe.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.4]{git.png}
+\caption{\textit{Github}}
+\end{center}
+\end{figure}
+
+\paragraph{}
+Enfin, M. Bernis a eu l'idée de nous louer un serveur dédié chez OVH afin de pouvoir héberger notre projet, mais aussi dans le but de gagner en performance lors de l'exécution des robots ou de l'algorithme de matching, cette dernière pouvant être fastidieuse et gourmande en ressources, poussant souvent nos Macbook Pro dans leurs derniers retranchements.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=1.2]{ovh.jpg}
+\caption{\textit{OVH}}
+\end{center}
+\end{figure}
 
 \chapter{La conception}
 
+\section{Les modèles}
+
+\section{Idées supplémentaires}
+
+\section{Problèmes rencontrés}
+
+\section{Orientation vers une nouvelle solution}
+
+\section{Maquettes}
+
 \chapter{Le développement}
 
+\section{Nos méthodes}
 
+\section{Le résultat final}
 
-
+\section{Problèmes techniques rencontrés}
 
 
 \chapter{Conclusion}
