@@ -222,8 +222,8 @@ Ici, c'est la fonction mongo push qui permet d'ajouter l'array contenant le prix
 \newpage
 
 \section{Matching}
-L'algorithme de matching est l'une des parties les plus importantes du back-end. Il permet de faire correspondre les articles entre les différents sites web. On compare ici tous les articles d'un site avec ceux des autres sites.\\
-On compare ici les libellés des articles dont on aura auparavant enlever les accents et mis en minuscule grâce à la fonction minusculesSansAccents(\$libelle). Les libellés sont mis sous forme de tableaux de mots, on compare ensuite ceux-ci avec ceux du libellé de l'article comparé. Un mot est accepté comme matché lorsque l'on trouve un mot similaire à 90\% dans le tableau que l'on compare grâce à la fonction php similar\_text(\$Word1, \$Word2, \$percent);\\
+L'algorithme de matching est l'une des parties les plus importantes du back-end. Il permet de faire correspondre les articles entre les différents sites web. Nous comparons ici tous les articles d'un site avec ceux des autres sites.\\
+Nous comparons les libellés des articles dont nous aurons auparavant enlevés les accents et mis en minuscule grâce à la fonction minusculesSansAccents(\$libelle). Les libellés sont mis sous forme de tableaux de mots, nous comparons ensuite ceux-ci avec ceux du libellé de l'article comparé. Un mot est accepté comme matché lorsque nous trouvons un mot similaire à 90\% dans le tableau que nous comparons grâce à la fonction php similar\_text(\$Word1, \$Word2, \$percent);\\
 Si le libellé contient plus de 5 mots, au moins 3 mots doivent matcher avec ceux de l'article comparé pour être accepté, sinon, deux mots suffisent.\\
 Le prix rentre aussi en compte dans la comparaison des articles, seul les articles dont les prix ne diffèrent pas de plus de 25\% peuvent être matchés entre eux.
 \begin{lstlisting}
@@ -235,7 +235,7 @@ if (arrayCompare($mots1, $mots2) >= $compteur
 }
 \end{lstlisting}
 
-Lorsqu'un article est matché avec un autre article d'un autre site, on ajoute l'id de ce dernier dans un tableau 'match' de l'article en question.
+Lorsqu'un article est matché avec un autre article d'un autre site, nous ajontons l'id de ce dernier dans un tableau 'match' de l'article en question.
 \begin{lstlisting}
 $db->articles->update(array(
 			"_id" => new MongoId($art['_id'])),
@@ -244,7 +244,7 @@ $db->articles->update(array(
 			));          
 \end{lstlisting}
 
-On aura donc pour chaque article, une liste d'articles des autres sites qui pourrait correspondre. On validera ensuite le matching en graphique, dans la partie front-end.
+Nous aurons donc pour chaque article, une liste d'articles des autres sites qui pourrait correspondre. Nous validerons ensuite le matching en graphique, dans la partie front-end.
 \newpage
 
 \section{Temps d'éxécution}
@@ -265,10 +265,10 @@ Ce temps d'éxécution est réduit grâce au serveur OVH de quelques dizaine de 
 \end{center}
 \end{figure}
 
-L'algorithme de mise à jour des prix est lui bien plus rapide bien que son temps d'éxécution est étroitement lié avec la rapide du site web sur lequel il se trouve. On peut alors récupérer le prix d'un article sur un site en environ 1 seconde.\\\\
+L'algorithme de mise à jour des prix est lui bien plus rapide bien que son temps d'éxécution est étroitement lié avec la rapide du site web sur lequel il se trouve. Nous pouvons alors récupérer le prix d'un article sur un site en environ 1 seconde.\\\\
 
 C'est sur l'algorithme de matching qu'il est intéressant de regarder la différence du temps d'éxécution entre nos ordinateurs personnels et le serveur. Ce temps d'éxécution est très grand de base et exponentiel. En effet, il faut comparer environ 4 mots (taille du libellé d'un article) avec 4 mots d'un libellé d'un autre article fois le nombre d'articles restant dans la base de données qui est de plus de 7000.\\
-On arrive donc a un temps d'éxécution d'environ 2 heures pour matcher les produits d'un site web. Il est également correct puisque lancer avec la même périodicité que l'algorithme de récupérations des articles.\\
+Nous arrivons donc a un temps d'éxécution d'environ 2 heures pour matcher les produits d'un site web. Il est également correct puisque lancer avec la même périodicité que l'algorithme de récupérations des articles.\\
 Ce temps d'éxécution est diminué de 30\% grâce au serveur OVH ce qui nous permet, avec tous les sites, d'économiser plusieurs heures de calcul.
 
 \chapter{Front-End}
@@ -404,8 +404,8 @@ Pour la partie back-end, nous avons écrits des tests permettant de vérifier qu
 \end{figure}
 
 \chapter{Manuel d'utilisation}
-Les algorithmes sont tous lancés de automatiquement et périodiquement, en revanche on peut les utiliser de manière manuel. La mise à jour du prix peut être lancé pour un article graphiquement directement sur notre site web.\\
-On peut en revanche le lancer manuellement.
+Les algorithmes sont tous lancés de automatiquement et périodiquement, en revanche nous pouvons les utiliser de manière manuel. La mise à jour du prix peut être lancé pour un article graphiquement directement sur notre site web.\\
+Nous pouvons en revanche le lancer manuellement.
 \begin{lstlisting}
 // usage :
 crawlerArticle [idSite] [idArticle] [urlArticle]
