@@ -57,7 +57,7 @@
 \tableofcontents
 
 \chapter{Introduction}
-Ce présent rapport vient en complément du rapport de synthèse du projet industriel de fin d'études mené par Balestrat Clément, Kermarc Nicolas et Pravossoudovitch Yann durant PIFE en 5ème année de l'école Polytech' Montpellier.\\\\
+Ce présent rapport vient en complément du rapport de synthèse du projet industriel de fin d'études mené par Balestrat Clément, Kermarc Nicolas et Pravossoudovitch Yann durant le PIFE en 5ème année de l'école Polytech' Montpellier.\\\\
 Il décrit les différentes phases du développement au niveau technique ainsi que les choix établis tel que le langage et les outils utilisés qui nous ont permis d'arriver au logiciel final.\\\\
 Nous retrouverons par exemple des détails sur les options prises pour créer un algorithme permettant de récupérer la plupart des articles des différents sites ciblés ainsi que de les faire correspondre entre eux.\\\\
 Nous présenterons au cours de ce rapport le choix des technologies tel que le langage, les librairies, le type de base de données ou encore les outils. Nous verrons par la suite comment nous sommes arrivés à réaliser ces algorithmes dont nous regarderons le temps d'éxécution en passant par le choix de l'architecture du programme. Enfin, nous nous intéresserons à la partie graphique de la solution que le client utilisera.
@@ -65,19 +65,19 @@ Nous présenterons au cours de ce rapport le choix des technologies tel que le l
 \chapter{Choix des technologies}
 \section{Les langages}
 Nous aurions pu choisir le langage Python ou même C pour effectuer ce travail, puisqu'il sont rapides, efficaces et qu'il peuvent s'exécuter sur un serveur dédié. Mais le driver MongoDB (type de base de données que nous étudierons plus bas) n'est pas bien géré sur ces langages où plutôt, est très bien géré avec PHP.\\\\
-Nous nous sommes donc plutôt tournés vers le langage PHP car il est simple d'utilisation et qu'il permet de tester les fonctionnalités plus rapidement puisque c'est un langage script, donc non compilé. De plus la librairie pour la base de données de type Mongo est assez facile d'utilisation et bien qu'il n'y ai pas une grande communauté d'utilisateurs, les porteurs du projet peuvent mettre à disposition leurs connaissances.\\\\
+Nous nous sommes donc plutôt tournés vers le langage PHP car il est simple d'utilisation et qu'il permet de tester les fonctionnalités plus rapidement puisque c'est un langage script, donc non compilé. De plus la librairie pour la base de données de type Mongo est assez facile d'utilisation et bien qu'il n'y ait pas une grande communauté d'utilisateurs, les porteurs du projet peuvent mettre à disposition leurs connaissances.\\\\
 Pour ce qui est des données à traiter, nous avons utilisé une librairie DOM qui permet d'accéder au contenu des différentes pages articles des sites webs pour en récupérer le prix et le libellé entre autres.
 Nous détaillerons l'utilisation de cette librairie dans le prochain paragraphe.\\
 L'objectif initial est de faciliter l'échange automatisé de contenus complexes.\\
 Voici un exemple du fichier XML utilisé pour ce projet afin de mieux comprendre comment l'utiliser.\\\\
-Pour la partie graphique, NICO
+Pour la partie graphique, nous avons utilisé un framework Javascript, le Node.js, ainsi qu'un thème Bootstrap pour le CSS.
 ~\\
 
 \section{La base de données Mongo}
-Nous avons décidé d'utiliser MongoDB pour la conception de base de données car elle correspond a l'utilisation que nous voulons en faire.\\
+Nous avons décidé d'utiliser MongoDB pour la conception de base de données car elle correspond à l'utilisation que nous voulons en faire.\\
 MongoDB ( de "hu\textbf{mongo}us" signifiant gigantesque) est une base de données open-source NoSQL (pour "Not only SQL") qui est évolutive et de haute performance.\\\\
 MongoDB permet de ne pas faire de requêtes SQL, on parle alors de base SchemaLess ou dite orienté Documents.
-La première grande utilité est qu'on est pas obligé d'avoir des scripts de migration pour définir et faire évoluer le format de sa base de données. C'est simple : on crée son objet et on le met dans notre base. Cette logique est donc beaucoup plus orientée Objet Dynamique.\\
+La première grande utilité est que nous ne sommes pas obligés d'avoir des scripts de migration pour définir et faire évoluer le format de sa base de données. C'est simple : on crée son objet et on le met dans notre base. Cette logique est donc beaucoup plus orientée Objet Dynamique.\\
 Ceci est donc bien plus efficace lorsque l'on veut gérer un nombre important de data.\\\\
 On va ici expliquer le fonctionnement et les avantages de celui-ci couplé au langage de programmation PHP.
 En effet quelques lignes de code, tel que l'exemple ci-dessous, sont nécessaires pour pouvoir utiliser une base de données MongoDB.
@@ -113,8 +113,8 @@ Nous pouvons constater ici que nous créons un array contenant tous les attribut
 
 \section{Les outils}
 \subsection{Github}
-Une fois que nous avons décidés comment faire ce projet, il nous fallait pouvoir l’envoyer pour qu’il soit utiliser. Nous avons alors mis en place un dépôt Git sur le site Github.com. \\
-Il bénéficie de fonctionnalitées indispensables tel qu’un système de contrôle de versions décen- tralisé. Celui-ci nous a sorti plusieurs fois de situations pénibles puisqu’il archive toutes les versions du projet sur son site et ainsi nous avons pu revenir à une version antérieur non buguée.
+Une fois que nous avons décidé comment faire ce projet, il nous fallait pouvoir le mettre en ligne pour qu’il puisse être accessible à tout l'équipe. Nous avons alors mis en place un dépôt Git sur le site Github.com. \\
+Il bénéficie de fonctionnalités indispensables telles qu’un système de contrôle de versions décentralisé. Celui-ci nous a sorti plusieurs fois de situations pénibles puisqu’il archive toutes les versions du projet sur son site et ainsi nous avons pu revenir à une version antérieur non buguée.
 \begin{figure}[h]
 \includegraphics[scale = 0.5]{./img/github.png}
 \caption{PricingComparator Repo}
@@ -122,11 +122,11 @@ Il bénéficie de fonctionnalitées indispensables tel qu’un système de contr
 
 \subsection{OVH}
 OVH est un hébergeur qui proposent des serveurs dédiés, des serveurs privés, de l'hébergement mutualisé, etc.\\
-Nous avons décidés, avec le demandeur, d'opter pour un serveur dédié fonctionnant sous Ubuntu Server 12.04 "Precise Pangolin" LTS. Cette distribution — basée sur un système 64bits — nous permet non seulement d'héberger et de déployer notre projet pour qu'il soit utilisable n'importe où, mais il nous offre également une puissance de calcul bien supérieur à celle de nos ordinateurs personnels. On verra plus tard que ce dernier point est très important puisque car le temps d'éxécution des algorithmes est conséquent.
+Nous avons décidés, avec le demandeur, d'opter pour un serveur dédié fonctionnant sous Ubuntu Server 12.04 "Precise Pangolin" LTS. Cette distribution — basée sur un système 64bits — nous permet non seulement d'héberger et de déployer notre projet pour qu'il soit utilisable n'importe où, mais il nous offre également une puissance de calcul bien supérieure à celle de nos ordinateurs personnels. Nous verrons plus tard que ce dernier point est très important puisque le temps d'éxécution des algorithmes est conséquent.
 
 \subsection{LaTeX}
 Pour la rédaction des rapports, nous avons décidé d'utiliser le repo github pour partager les rapports.\\
-Nous avons décidés de les écrire dans le langage LaTeX qui est un système de composition de documents. Il est devenu la méthode privilégiée d'écriture de documents techniques et scientifiques puisqu'il permet un rendu simple, épuré, mais très efficace.\\
+Nous avons décidé de les écrire dans le langage LaTeX qui est un système de composition de documents. Il est devenu la méthode privilégiée d'écriture de documents techniques et scientifiques puisqu'il permet un rendu simple, épuré, mais très efficace.\\
 Ce présent rapport technique ainsi que le rapport de synthèse sont écrits en LaTeX.
 
 \chapter{Back-End}
@@ -134,7 +134,7 @@ Ce présent rapport technique ainsi que le rapport de synthèse sont écrits en 
 Dès le début, nous avons décidés d'avoir une collection Sites contenant une id, un nom et une url ainsi qu'une autre Articles contenant une id une url, l'id du site correspondant, un nom et un prix.
 Cette structure était relativement bonne mais plusieurs contraintes se sont présentées.\\
 \paragraph{}
-Tout d'abord, le demandeur a fait la requête d'avoir une courbe d'évolution du prix dans le temps or notre structure ne le permettait pas. Nous avons alors décidé de remplacer le simple attribut float "Prix" par un tableau d'éléments comprenant un prix et une date.\\
+Tout d'abord, l'idée d'ajouter une courbe d'évolution du prix dans le temps a été proposée or notre structure ne le permettait pas. Nous avons alors décidé de remplacer le simple attribut float "Prix" par un tableau d'éléments comprenant un prix et une date.\\
 De plus, nous avons jugés qu'ajouter un attribut catégorie pour les articles facilitait grandement la tâche des scripts et permettait de pouvoir faire un affichage par catégorie dans le front-end. Nous avons alors décidé d'ajouter cet attribut à la collection articles ainsi qu'à la collection Sites sous forme d'un tableau comprenant le nom de toutes les catégories du site, son nom commun aux sites, ainsi que son url respective.\\\\
 Voici la structure finale de notre solution:
 \begin{lstlisting}
@@ -160,7 +160,7 @@ Articles : "_id" => MongoID,
 
 \section{Récupération des articles}
 L'une des parties les plus délicates et contraignantes de ce projet à été tout d'abord de récupérer le plus d'articles possibles sur les différents sites de plongée.\\
-En effet, nous nous sommes trouvé face à de nombreux problèmes, notamment comment automatiser cette récupération pour tous les articles et comment faire face au besoin de mémoire important de l'algorithme?\\\\
+En effet, nous nous sommes trouvés face à de nombreux problèmes, notamment comment automatiser cette récupération pour tous les articles et comment faire face au besoin de mémoire important de l'algorithme?\\\\
 Pour ce faire, nous avons utilisé une librairie DOM —Document Object Model— php : SimpleHTMLDom.\\
 
 Le SimpleHTMLDom est une librairie écrite en PHP5 qui permet de manipuler du HTML très facilement. Il fonctionne en s'appuyant sur les balises des pages HTML.\\
@@ -175,7 +175,7 @@ $html = file_get_html("url de l'article");
 $nomArticle = $html2->find('.title', 0)->plaintext;
 \end{lstlisting}
 
-On a donc utilisé pour chaque site, les DOM correspondants aux pages articles afin de récupérer les données que l'on utilisera plus tard tel que le libellé, le prix, la photo de l'article, etc.\\\\
+Nous avons donc utilisé pour chaque site, les DOM correspondants aux pages articles afin de récupérer les données que l'on utilisera plus tard tel que le libellé, le prix, la photo de l'article, etc.\\\\
 Beaucoup de problèmes ont étés rencontrés ici puisque selon les sites webs, un manque de rigueur était notable sur le code de ceux-ci.\\\\
 Pour automatiser ce processus sur tous les articles de tous les sites, nous avons décidés de découper le site en catégories (Combinaisons, Palmes, Masques, ...) pour ensuite les parcourir sur plusieurs niveaux jusqu'à arriver sur les pages articles. Ceci est possible grâce aux crawlers créé par nos soins, en utilisant encore une fois la libraire DOM.
 \begin{lstlisting}
@@ -190,8 +190,8 @@ $html->clear();
 unset($html);
 \end{lstlisting}
 
-Une fois ces informations récupérés donc, on a besoin de l'enregistrer en base de données pour pouvoir les utiliser plus tard.\\
-On crée donc un array pour chaque article avec toutes ces informations que l'on insère en base très facilement grâce au driver mongo:\\
+Une fois ces informations récupérés donc, nous avons besoin de l'enregistrer en base de données pour pouvoir les utiliser plus tard.\\
+On crée donc un array pour chaque article avec toutes ses informations que l'on insère en base très facilement grâce au driver mongo:\\
 \begin{lstlisting}
 $array_article = array(
 			"url" => $urlArticle,
