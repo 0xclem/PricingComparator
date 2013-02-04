@@ -9,7 +9,7 @@
 \usepackage{listingsutf8}
 \usepackage[final]{pdfpages} 
 \usepackage{float}
-
+\usepackage{listings}
 \usepackage{amsmath}
 \usepackage{enumitem}     % images
 \usepackage{verbatim}         % texte préformaté
@@ -194,27 +194,272 @@ Enfin, M. Bernis a eu l'idée de nous louer un serveur dédié chez OVH afin de 
 
 \chapter{La conception}
 
+\paragraph{}
+Ce chapitre est essentiel car il va permettre au lecteur de comprendre notre façon de penser. N'ayant pas vraiment de pistes au départ, notre travail s'est fait à tâtons dans les débuts. 
 \section{Les modèles}
 
+\paragraph{}
+
+Ce projet est principalement basé sur les données que nos parseurs\footnote{Synonyme de robot, crawler, spider.} vont récupérer. Par conséquent il fut important de réfléchir sur la structure de nos modèles en BD\footnote{Acronyme de Base de Données}. A première vue, le plus important sur la page d'un article est son libellé et son prix. En effet, comme précisé plus haut, il n'existe pas de numéro unique pour un article, comme l'ISBN pour un livre par exemple. Nous avons pensé à la référence du modèle, mais cette dernière est absente sur certain sites, et M. Bernis nous a expliqué que certain magasin se créent les leurs donc il se peut qu'il n'y ait aucun rapport avec celui donné par le constructeur.\\
+Notre comparaison serait donc basée sur le libellé de l'article ainsi que le prix. En effet, le fait de constater que le prix d'un article que l'on souhaite comparer avec le notre se trouve à peu près dans la même fourchette de tarif nous a semblé être une idée intéressante.
+
+\paragraph{}
+Parcourir tous les sites pour "aspirer" le libellé et le prix des articles va prendre énormément de temps. Il faudra donc garder une trace de l'URL de l'article afin de pouvoir réutiliser cette dernière si besoin. Pour une mise à jour des prix par exemple: on se rend à l'article concerné dans la BD, on récupère son URL et on va chercher le nouveau prix.
+Notre modèle \textit{article} possèdera donc un attribut \textit{Url}.
+
+\newpage
+\paragraph{}
+Pour l'instant notre collection\footnote{Equivalent de "table" en SQL, chez MongoDB.} \textit{articles} se résume à ceci:
+
+
+\begin{lstlisting}
+Articles: (_id, url, _site, name, prices)
+
+Avec:
+
+_id: ID de l'article
+url: l'url de l'article
+_site: l'ID du site sur lequel est pris l'article
+prices: le prix actuel de l'article
+\end{lstlisting}
+
+\paragraph{}
+L'attribut \textit{\_sites} faisant référence à l'ID du site sur lequel est pris l'article, il est donc bien évident qu'une collection \textit{Sites} sera présente.
+A première vue le modèle basique serait:
+
+\begin{lstlisting}
+Sites: (_id, url)
+
+Avec:
+
+_id: ID du site
+url: l'url du site
+\end{lstlisting}
+
+\paragraph{}
+Théoriquement cette conception pourrait nous permettre d'inscrire tous les sites concernés dans une collection, et de récupérer tous les articles de ces sites dans une autre.
+Car c'est sans aucun doute le premier "gros travail" de ce projet: récupérer le plus d'articles possible sur ces plateformes e-commerce.
+
+\newpage
 \section{Idées supplémentaires}
+
+\paragraph{}
+Durant la phase de réflexion concernant la conception, plusieurs idées nous sont venues.\\
+Tout d'abord, la possibilité pour l'utilisateur de consulter la courbe de variation des prix sur un article donné. Beaucoup de sites proposent ce service, et il est vrai qu'il peut s'avérer utile dans certains cas. Pour se faire, il faudrait très légèrement modifier la collection \textit{Articles} afin de pouvoir associer une date à un prix. L'attribut \textit{Prices} deviendrait donc un tableau d'objets avec à l'intérieur un prix auquel on associer une date. Ainsi, via l'aide d'un framework en Javascript pour les graphes (Flotr), on va pouvoir récupérer ce tableau et tracer une courbe d'évolution des prix.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.6]{flotr.png}
+\caption{\textit{Un exemple de possiblité de graphe avec le framework Flotr}}
+\end{center}
+\end{figure}
+
+
+\paragraph{}
+Une autre idée est celle des catégories. Pour chaque article récupéré, essayer de prendre sa catégorie nous permettrait de filtrer les affichages, les recherches...etc. Un seul problème: à première vue, les catégories ne sont pas les mêmes selon les sites, donc il y aurait tout un travail de recherche de correspondance et de recoupement de catégories derrière. Ceci dit nous allons voir plus tard que c'est grâce à ces catégories que nous avons pu résoudre une grosse partie de nos problèmes.
+
+\newpage
+\paragraph{}
+Une mise à jour des modèles \textit{Artciles} et \textit{Sites} est donc nécessaire:
+
+\begin{lstlisting}
+Articles: (_id, url, _site, name, prices[price, date], category)
+Sites: (_id, url, name_cat, name_gen)
+
+Avec:
+
+prices, le tableau qui associe un prix avec une date
+category, la categorie de l'article
+name_cat le veritable nom de la categorie (specifique au site)
+name_gen le nom generique trouve pour recouper les categories entre elles 
+\end{lstlisting}
+
+\paragraph{}
+Une dernière amélioration possible serait de pouvoir exporter le tableau des prix des articles au format XLS, afin de pouvoir travailler dessus sur Excel, ou tout simplement l'imprimer. Il existe énormément de librairies pour traiter ce genre de cas en PHP, ce qui rend donc cette tâche très largement faisable.
+
+\section{Le matching}
+
+\paragraph{}
+C'est ici que commence une partie également très intéressante pour ce projet, vu qu'elle représente la principale fonctionnalité. En effet, la recherche de correspondance ou \textit{matching}, est un élément primordial dans l'élaboration d'un outil de comparaison; elle va nous permettre d'associer les différents articles entre les sites afin de pouvoir en comparer les prix.\\
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.6]{articles.png}
+\caption{\textit{Recherche d'une correspondance entre les articles de plusieurs sites}}
+\end{center}
+\end{figure}
+
+\paragraph{}
+On part donc d'un site référent, c'est à dire que l'on doit simuler le fait qu'un client veuille comparer les prix des articles de son site. Ici, on ne pourra bien évidemment choisir qu'entre les cinq sites du projet. Par exemple si on choisit \textit{palanquee.com} comme site référent, l'algorithme de matching va récupérer les articles de ce site, et chercher des correspondances avec les quatres autres. Ainsi uniquement les articles de La Palanquée vont être comparés.\\
+Comment gérer l'inscription en base de données d'une correspondance ? C'est très simple, il suffira d'ajouter un attribut à la collection \textit{articles} nommé par exemple \textit{match} qui correspondra à un tableau d'IDs des articles correspondants. Un par site donc étant donné que l'on part sur la base d'un matching très précis\footnote{Nous verrons plus tard que justement, ce choix a posé problème}.\\
+On a donc une fois de plus, une légère mise à jour de la collection \textit{articles}: 
+
+\begin{lstlisting}
+Articles:(_id, url, _site, name, prices[price, date], category, match[])
+
+Avec:
+
+match, un tableau d'IDs d'articles. Quatre cases dans ce tableau, 
+pour les quatre articles trouves parmis les quatre autres sites
+
+\end{lstlisting}
+
+\paragraph{}
+Ainsi une fois les correspondances trouvées et ajoutées dans ce tableau \textit{match}, il suffira juste de les récupérer afin de pouvoir travailler dessus en front-end\footnote{Partie visuelle du développement, s'oppose à \textit{back-end}}.
+
 
 \section{Problèmes rencontrés}
 
+\paragraph{}
+Malheureusement tout ne s'est pas passé comme nous le voulions. En effet, après une analyse un peu plus précises des sites concernés, nous nous sommes rendus compte qu'un matching très précis allait être très difficile, voir impossible à réaliser. En effet n'ayant pas d'identifiant spécifique à un article, le seul moyen est la recherche de correpondance par libellés. Mais après avoir effectué plusieurs comparaisons entre ces derniers, nous en avons conclu qu'il y avait bien trop de différences pour pouvoir valider d'office une correpondance potentielle parmis les autres.\\
+Un exemple de cinq libellés, correpondant au même article, sur les cinq sites.
+
+\begin{lstlisting}
+"Montre ordinateurs D6i Metal SUUNTO"
+"Ordinateur D6i bracelet metal + interface incluse"
+"Suunto D6i Elastomer White + Free Transmitter"
+"Montre D6i Suunto bracelet acier avec Interface USB - Suunto"
+"MONTRE D6I ALL BLACK - SUUNTO Aqualung"
+\end{lstlisting}
+
+\paragraph{}
+Cet article, la montre D6i Suunto, pose problème. En effet, on peut voir chaque libellé est différent. L'ordre des mots n'est pas le même, des offres peuvent apparaître chez certains et pas chez d'autres...etc. Rien que rechercher un article directement sur les sites concernés (via leurs moteurs de recherche) peut s'avérer laborieux tellement les titres peuvent être différents. Ainsi même en possession du meilleur algorithme, nous ne pourrons jamais être sûrs que le bon article sera choisi.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.6]{montre.jpg}
+\caption{\textit{Un exemple d'article: la montre D6i métal Suunto}}
+\end{center}
+\end{figure}
+
+
+\paragraph{}
+Autre problème: celui de récupérer tous les articles de tous les sites. La véritable technique serait de partir de la page d'accueil, et d'y récupérer tous les liens hypertexte, pour les analyser par la suite de la même façon que sur la page d'accueil et d'essayer de repérer lorsque l'un de ces liens pointe vers une page article. Un travail récursif donc, qui serait énormément laborieux à développer, voir même impossible en si peu de temps. En effet, un site de e-commerce possède des dizaines de milliers de liens, l'algorithme pourrait donc se perdre très facilement, ou dans le cas où ce dernier serait fonctionnel, mettrait des heures voir des jours à tout récupérer. Nos macbooks ne peuvent en aucun cas assurer le balayage de cinq sites de cette façon. Une saturation de la mémoire arriverait vite.
+
+\paragraph{}
+Le dernier obstacle est lié au fait que les catégories des sites peuvent être différentes. Il n'y a pas forcément les mêmes, ce qui pose donc problème pour toutes les réunir. Et bien évidemment, s'il manque des catégories, tous les articles ne pourront alors pas être récupérés.
+
+
 \section{Orientation vers une nouvelle solution}
+
+\paragraph{}
+Tous les problèmes précédemment cités sont donc l'objet d'une nouvelle réflexion à propos de la création de cet outil de comparaison de prix. Une mise au point avec M. Bernis était donc nécessaire, afin de trouver un terrain d'entente à propos des fonctionnalités attendues.\\
+Ce dernier a été très compréhensif et nous a donc aidé à trouver des solutions.
+
+\paragraph{}
+Au sujet du matching, nous avons eu l'idée de proposer une liste d'articles potentiellement identiques au produit référent à l'utilisateur, et c'est ce dernier qui devra les valider manuellement. Un repérage visuel donc, en fonction du libellé, mais qui peut être amélioré à l'aide de l'image des articles. Ainsi si l'image ou le libellé lui semble correspondre, il l'indiquera et ce choix sera sauvegardé en BD.\\
+Une légère modification de la collection \textit{articles} est donc obligatoire.
+
+\begin{lstlisting}
+Articles: (_id, url, _site, name, prices[price, date], category, img)
+
+Avec:
+
+img, l'adresse de l'image de l'article
+
+\end{lstlisting}
+
+\paragraph{}
+Ce changement va donc nous permettre de stocker l'url de l'image de l'article récupéré, et ainsi l'image pourra être affichée en visuel dans la liste des propositions de correspondances.
+
+\paragraph{}
+Ensuite est venue l'évocation du problème de récupération de tous les articles sur les sites. Quelles méthode de parsing utiliser ? Comment gérer les différentes catégories ?\\
+Ceci s'est également réglé assez facilement: au lieu de partir de la page d'accueil et de récupérer tous les liens, nous nous sommes mis d'accord sur le fait de partir directement des pages de catégories. Ces dernières ont des adresses bien spéciales, et contiennent un listing des articles qui en font partie.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.4]{vp.png}
+\caption{\textit{Un exemple de la liste d'articles de la catégorie "ordinateurs" du vieuxplongeur.com}}
+\end{center}
+\end{figure}
+
+\paragraph{}
+Avec cette méthode, certes plus ciblée et un peu moins automatique (les adresses des différentes catégories doivent être ajoutées manuellement), nous avons directement accès à des pages articles.\\
+La correspondance entre les différentes catégories sera aussi un travail de recherche avant tout. Nous essayerons de trouver le plus de points communs entre ces dernières et nous laisseront de côté celles où qui sont spécifiques à un seul site. Ainsi, nous avons réussi à faire correspondre 13 catégories:
+
+\begin{itemize}
+\item Ordinateurs
+\item Palmes-masques-tubas
+\item Montres
+\item Sacs
+\item Bouteilles
+\item Combinaisons
+\item Eclairages
+\item Arbalètes
+\item Lestage
+\item Chaussons
+\item Gants
+\item Gilets
+\item Bouées
+\end{itemize}
+
+\paragraph{}
+Avec cette méthode, nous ne pouvons nier le fait que nous perdons un certain nombre d'articles par sites, mais cette dernière nous permettra de nous constituer une base de données d'articles quand même très impressionnante (environ 10 000) et d'avoir quelque chose de fonctionnel à la fin.\\
+De plus nous proposerons la possibilité pour l'utilisateur d'ajouter un article manuellement via la copie de l'url directement dans une boîte de dialogue. Par conséquent, lorsqu'un article sera manquant, il sera toujours possible de l'ajouter manuellement. L'ajout manuel va également concerner le matching. Si la liste de recommendations d'articles est vide ou ne propose pas les bons produits, l'utilisateur pourra ajouter la bonne correspondance à la main, via l'adresse de l'article.
+
 
 \section{Maquettes}
 
+\paragraph{}
+Afin de valider définitivement les fonctionnalités du site, nous avons réalisé des maquettes. Ces dernières ont ensuite été soumises à M. Bernis, qui nous a donné son accord pour le rendu final.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.4]{home.png}
+\caption{\textit{La page d'accueil}}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.4]{search.png}
+\caption{\textit{La page de recherche d'articles}}
+\end{center}
+\end{figure}
+
+
+\paragraph{}
+Ces maquettes ont été réalisées avec l'aide du logiciel \textit{Balsamiq Mockups}. Il propose toute une panoplie d'outils aussi bien pour les maquettes de sites web que pour les applications mobiles. Les plus grosses firmes l'utilisent pour leurs projets, comme Apple, Google, Skype, IBM...etc.
+
+\paragraph{}
+Nous avons essayé d'être les plus précis sur ces maquettes, jusqu'à annoter certaines fonctionnalités à l'aide de "bulles" pour être sûrs de bien se faire comprendre par le demandeur.\\
+L'utilisateur aura donc la possibilité de "suivre" le prix de certain articles dans un tableau (avec possibilité de les retirer si besoin). Pour aller chercher ces articles, il se rendra sur la page de recherche. Un barre de recherche ainsi qu'un filtrage par catégorie sera possible. Une fois le bon article (de sa base de données donc) trouvé, une liste de correspondances provenant des autres sites apparaîtra. Il aura alors la possibilité de préciser quels sont les bons, ou alors de les ajouter directement manuellement via l'adresse des articles. 
+
+
+
 \chapter{Le développement}
 
-\section{Nos méthodes}
+\paragraph{}
+Afin d'être le plus clair possible dans ce rapport de synthèse, nous avons fait le choix de ne pas parler de nos méthodes de développement. En effet il est difficile d'expliquer cette partie sans utiliser un langage  que certains pourraient juger d'incompréhensible. Pour plus de précisions concernant ce sujet nous encourageons donc fortement le lecteur à se reporter au rapport technique, où tout sera indiqué en détail.\\
+Cette partie sera donc utilisée pour montrer les résultats finaux de ce projet, et de voir comment se sont adaptés le design et les fonctionnalités présentes dans les maquettes en "vrai".
+
 
 \section{Le résultat final}
 
 \section{Problèmes techniques rencontrés}
 
+\paragraph{}
+Une fois les problèmes de conception résolus, nous n'avons pas véritablement fait face à de gros problèmes techniques. Les principaux étaient dûs en partie à une saturation de la mémoire de nos macbook lors du balayage de tous les sites. En effet, pour accéder à des valeurs comme le libellé ou le prix d'un article il nous a fallu repérer les bonnes balises dans le code source HTML des sites. Pour ce faire, des Data Object Model (DOM) ont été utilisés. Ces objets, réputés pour efficacité, le sont aussi pour leur "gourmandise" en matière de ressources. Quand trop de DOM sont créés et utilisés dans un script, la mémoire disponible baisse progressivement jusqu'à arriver à une saturation de celle ci.\\
+Le code génère donc ce que l'on appelle une \textit{Segmentation fault (erreur de segmentation}, qui est une des plus connue (et parfois des plus redoutable) de la programmation.\\
+Après quelques recherches nous avons vite trouvé d'où venait précisément le problème. Il fallait détruire chaque DOM à la fin de son utilisation. Ainsi, la mémoire est libérée progressivement, laissant place à la création et à l'utilisation d'autres DOM, sans générer d'erreur de mémoire. Des simples commandes commes \textit{unset} et \textit{clear} ont été mises à la disposition des développeurs pour gérer manuellement ce genre de problèmes.
+
+\paragraph{}
+Ces scripts étaient donc très longs à s'exécuter, du fait de la quantité d'articles à extaire, mais aussi parce qu'ils étaient plus ou moins tributaires de la qualité des serveurs des sites ciblés. Même avec une visite qualifiée de normale (via un navigateur internet) la plupart des sites ciblés par nos robots étaient lents. Ainsi, si 10 000 articles sont à récupérer sur ce genre de pages, cela prendra un temps considérable. Même si l'utilisation du serveur dédié mis à notre disposition nous a permis de gagner un peu de temps (les calculs se font beaucoup plus rapidement sur ce genre de machine que sur nos Macbooks), le remplissage de nos bases de données reste quelque chose de très long (plusieurs heures).
+
 
 \chapter{Conclusion}
 
+\paragraph{}
+Ce projet a donc été bénéfique pour nous sur tous les plans. Nous avons pu participer à toutes les étapes de sa création, de la conception jusqu'au déploiement, nous permettant ainsi une véritable prise de décision concernant certain choix,  et résolutions de problèmes. Nous avons su recadrer le projet pour nous permettre d'avoir quelque chose de fonctionnel, sous contrôle et approbation du demandeur. Ce dernier a d'ailleurs toujours été présent pour nous aider et nous écouter, et nous l'en remercions pour ça.
+
+\paragraph{}
+Au niveau technique ce projet nous a permis d'aborder énormément de concept, comme les DOM en PHP, la manipulation d'énormément d'enregistrements en base de données, ainsi qu'une approche de technologies relativement récentes et à la mode en front-end, comme le framework Node.js.
+
+\paragraph{}
+Il est bien évident que beaucoup de travail reste à fournir sur ce projet, pour espérer d'en sortir un business plan vivable. Nous en avons réalisé les fondations ainsi que le coeur du fonctionnement, mais il serait intéressant que d'autres développeurs l'améliorent en implémentant par exemple une interface utilisateur, un système de facturation ainsi qu'en automatisant un peu plus certaines tâches, comme le parcours des sites à partir de la page d'accueil. L'ajout d'autres sites qui n'ont rien à voir avec la plongée pourrait être aussi un plus, afin d'étendre les domaines d'utilisation.
+
+\paragraph{}
+Pour finir, malgré l'énorme travail qu'a nécéssité ce projet, nous ne pouvons en tirer que des points positifs et sommes fiers de terminer nos études sur une mission de la sorte.\\
 
 
 

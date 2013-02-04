@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  31 JAN 2013 23:04
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  4 FEB 2013 03:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -492,39 +492,128 @@ Package pdftex.def Info: ovh.jpg used on input line 190.
 Chapitre 4.
 [9
 
-]
-Chapitre 5.
-[10
+] (/usr/local/texlive/2012/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+) [10]
+<flotr.png, id=56, 773.89125pt x 325.215pt>
+File: flotr.png Graphic file (type png)
+ <use flotr.png>
+Package pdftex.def Info: flotr.png used on input line 252.
+(pdftex.def)             Requested size: 464.33833pt x 195.1305pt.
 
-]
+Overfull \hbox (34.33371pt too wide) in paragraph at lines 252--253
+ [] 
+ []
+
+[11 <./flotr.png>]
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+)
+Overfull \hbox (7.89178pt too wide) in paragraph at lines 274--275
+[][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
+
+ []
+
+<articles.png, id=60, 681.54625pt x 336.25626pt>
+File: articles.png Graphic file (type png)
+ <use articles.png>
+Package pdftex.def Info: articles.png used on input line 287.
+(pdftex.def)             Requested size: 408.93091pt x 201.75531pt.
+ [12 <./articles.png>] (/usr/local/texlive/2012/texmf-dist/tex/latex/base/latin
+1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+)
+Overfull \hbox (1.8932pt too wide) in paragraph at lines 298--300
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+)
+<montre.jpg, id=65, 501.875pt x 501.875pt>
+File: montre.jpg Graphic file (type jpg)
+ <use montre.jpg>
+Package pdftex.def Info: montre.jpg used on input line 330.
+(pdftex.def)             Requested size: 301.12732pt x 301.12732pt.
+ [13] [14 <./montre.jpg>] (/usr/local/texlive/2012/texmf-dist/tex/latex/base/la
+tin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+)
+<vp.png, id=74, 1049.9225pt x 576.1525pt>
+File: vp.png Graphic file (type png)
+ <use vp.png>
+Package pdftex.def Info: vp.png used on input line 371.
+(pdftex.def)             Requested size: 419.96156pt x 230.45691pt.
+ [15] [16 <./vp.png>]
+<home.png, id=81, 1178.4025pt x 645.41125pt>
+File: home.png Graphic file (type png)
+ <use home.png>
+Package pdftex.def Info: home.png used on input line 408.
+(pdftex.def)             Requested size: 471.35265pt x 258.15993pt.
+
+Overfull \hbox (41.34802pt too wide) in paragraph at lines 408--409
+ [] 
+ []
+
+<search.png, id=82, 1130.2225pt x 682.55pt>
+File: search.png Graphic file (type png)
+ <use search.png>
+Package pdftex.def Info: search.png used on input line 415.
+(pdftex.def)             Requested size: 452.081pt x 273.01517pt.
+
+Overfull \hbox (22.07637pt too wide) in paragraph at lines 415--416
+ [] 
+ []
+
+[17 <./home.png>] [18 <./search.png>]
+Chapitre 5.
+[19
+
+] [20]
 Chapitre 6.
-[11
+
+Underfull \hbox (badness 10000) in paragraph at lines 462--463
+
+ []
+
+[21
 
 ] (./rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 7019 strings out of 493488
- 99088 string characters out of 3141326
- 185869 words of memory out of 3000000
- 10196 multiletter control sequences out of 15000+200000
- 13991 words of font info for 29 fonts, out of 3000000 for 9000
+ 7336 strings out of 493488
+ 102329 string characters out of 3141326
+ 193869 words of memory out of 3000000
+ 10491 multiletter control sequences out of 15000+200000
+ 16209 words of font info for 32 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,9n,34p,733b,558s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,9n,34p,868b,1320s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/cm-super
-/cm-super-t1.enc}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-supe
-r/sfbx1000.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/
-sfbx1440.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sf
-bx1728.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfbx
-2074.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfbx24
-88.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfcc1000
-.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1000.p
-fb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb
-></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfsl1000.pfb></u
-sr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on rapport.pdf (12 pages, 481519 bytes).
+/cm-super-t1.enc}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super
+/sfbx1000.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/s
+fbx1440.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfb
+x1728.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfbx2
+074.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfbx248
+8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfcc1000.
+pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pf
+b></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb>
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></
+usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></us
+r/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/
+local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfsl1000.pfb></usr/lo
+cal/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/loca
+l/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
+Output written on rapport.pdf (22 pages, 1078663 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 63 compressed objects within 1 object stream
+ 150 PDF objects out of 1000 (max. 8388607)
+ 97 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
