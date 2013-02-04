@@ -1,0 +1,26 @@
+\select@language {french}
+\contentsline {chapter}{\numberline {1}Introduction}{2}
+\contentsline {chapter}{\numberline {2}Choix des technologies}{3}
+\contentsline {section}{\numberline {2.1}Les langages}{3}
+\contentsline {section}{\numberline {2.2}La base de donn\IeC {\'e}es Mongo}{3}
+\contentsline {section}{\numberline {2.3}Les outils}{4}
+\contentsline {subsection}{\numberline {2.3.1}Github}{4}
+\contentsline {subsection}{\numberline {2.3.2}OVH}{5}
+\contentsline {subsection}{\numberline {2.3.3}LaTeX}{5}
+\contentsline {chapter}{\numberline {3}Back-End}{6}
+\contentsline {section}{\numberline {3.1}Structure de la BDD}{6}
+\contentsline {paragraph}{}{6}
+\contentsline {section}{\numberline {3.2}R\IeC {\'e}cup\IeC {\'e}ration des articles}{7}
+\contentsline {section}{\numberline {3.3}Mise \IeC {\`a} jour du prix}{8}
+\contentsline {section}{\numberline {3.4}Matching}{9}
+\contentsline {section}{\numberline {3.5}Temps d'\IeC {\'e}x\IeC {\'e}cution}{10}
+\contentsline {chapter}{\numberline {4}Front-End}{11}
+\contentsline {section}{\numberline {4.1}Une application \IeC {\textquotedblleft }single page app\IeC {\textquotedblright }}{11}
+\contentsline {subsection}{\numberline {4.1.1}API : NodeJS et MongoJS}{11}
+\contentsline {subsection}{\numberline {4.1.2}Front-end : AngularJS}{13}
+\contentsline {subsection}{\numberline {4.1.3}Un seul langage}{14}
+\contentsline {subsection}{\numberline {4.1.4}Workflow}{14}
+\contentsline {chapter}{\numberline {5}Tests}{15}
+\contentsline {chapter}{\numberline {6}Manuel d'utilisation}{17}
+\contentsline {chapter}{\numberline {7}Conclusion}{18}
+\contentsline {chapter}{\numberline {8}Glossaire}{19}

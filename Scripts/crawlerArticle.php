@@ -14,19 +14,19 @@ include('simplehtmldom_1_5/simple_html_dom.php');
 
 if ($argc != 4) {
 	echo "Erreur : Nombre d'arguments incorrect. \n\n";
-	echo "usage: Crawler [idSite] [idArticle] [urlArticle]";
+	echo "usage: crawlerArticle [idSite] [idArticle] [urlArticle]";
 	echo "      Mise à jour du prix de l'article \n";
 	exit;
 }
 if ( !preg_match("/^[a-z0-9]{24}$/", $argv[1]) ) {
 	echo "Erreur : idSite non valide. \n\n";
-	echo "usage: Crawler [idSite] [idArticle] [urlArticle]";
+	echo "usage: crawlerArticle [idSite] [idArticle] [urlArticle]";
 	echo "      Mise à jour du prix de l'article \n";
 	exit;
 }
 if ( !preg_match("/^[a-z0-9]{24}$/", $argv[2]) ) {
 	echo "Erreur : idArticle non valide. \n\n";
-	echo "usage: Crawler [idSite] [idArticle] [urlArticle]";
+	echo "usage: crawlerArticle [idSite] [idArticle] [urlArticle]";
 	echo "      Mise à jour du prix de l'article \n";
 	exit;
 }
