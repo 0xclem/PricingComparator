@@ -3,8 +3,8 @@
 \contentsline {chapter}{\numberline {2}Choix des technologies}{3}
 \contentsline {section}{\numberline {2.1}Les langages}{3}
 \contentsline {section}{\numberline {2.2}La base de donn\IeC {\'e}es Mongo}{3}
-\contentsline {section}{\numberline {2.3}Les outils}{4}
-\contentsline {subsection}{\numberline {2.3.1}Github}{4}
+\contentsline {section}{\numberline {2.3}Les outils}{5}
+\contentsline {subsection}{\numberline {2.3.1}Github}{5}
 \contentsline {subsection}{\numberline {2.3.2}OVH}{5}
 \contentsline {subsection}{\numberline {2.3.3}LaTeX}{5}
 \contentsline {chapter}{\numberline {3}Back-End}{6}
